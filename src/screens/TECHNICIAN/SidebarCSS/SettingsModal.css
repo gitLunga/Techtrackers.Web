@@ -1,0 +1,152 @@
+/* The overlay that darkens the screen when the modal is open */
+.settings-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+/* Modal content box */
+.settings-modal {
+    background: #ffffff;
+    color: black;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+/* Modal header */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close-button {
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.settings-option {
+    margin: 15px 0;
+}
+
+/* Font size buttons */
+.settings-option button {
+    margin: 10px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #747575;
+    cursor: pointer;
+}
+ 
+.settings-option button:hover {
+    background-color: #ddd;
+    color: #000;
+}
+
+.close-modal-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.close-modal-button:hover {
+    background-color: #0056b3;
+}
+
+.settings-option label {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    cursor: pointer;
+    color: #333; /* Default label color */
+    font-family: Arial, sans-serif;
+  }
+  
+  .settings-option input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 40px;
+    height: 20px;
+    background-color: #ccc;
+    border-radius: 20px;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .settings-option input[type="checkbox"]::before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background-color: white;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .settings-option input[type="checkbox"]:checked {
+    background-color: #007bff;
+  }
+  
+  .settings-option input[type="checkbox"]:checked::before {
+    transform: translateX(20px);
+  }
+  
+  .settings-option input[type="checkbox"]:focus {
+    box-shadow: 0 0 3px #007bff;
+  }
+
+  :root {
+    --dark-mode-bg: #373a3a; /* Default dark mode color */
+  }*/
+  
+  body.dark-mode {
+    background-color: var(--dark-mode-bg); /* Use the custom property */
+    color: #ffffff; /* Text color for dark mode */
+  }
+  
+  @media (max-width: 480px) {
+    .settings-modal {
+      padding: 10px;
+    }
+  
+    .settings-option button {
+      margin: 5px;
+      padding: 5px 8px;
+    }
+  
+    .settings-option label {
+      font-size: 0.875rem;
+    }
+
+    .settings-modal {
+      max-width: 60%;
+    }
+
+    h3, h2 {
+      font-size: 1.5rem;
+    }
+  }
+  

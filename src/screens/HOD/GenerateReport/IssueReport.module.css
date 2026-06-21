@@ -1,0 +1,558 @@
+.issueReportContainer {
+  padding: 20px;
+  background: linear-gradient(135deg, #f8fffe 0%, #e5f0ec 100%);
+  min-height: 100vh;
+  transition: margin-left 0.3s ease;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box;
+}
+
+.issueReportContainer.sidebarOpen {
+  margin-left: 250px;
+}
+
+.issueReportContainer.sidebarClosed {
+  margin-left: 80px;
+}
+
+/* Header Section */
+.headerSection {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.headerSection::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #0c3a3a, #20b2aa, #0c3a3a);
+}
+
+.headerSection h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #0c3a3a;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #0c3a3a 0%, #20b2aa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #666;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* Table Section */
+.tableSection {
+  margin-bottom: 50px;
+}
+
+.tableContainer {
+  border-radius: 16px !important;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+}
+
+.tableContainer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #0c3a3a, #20b2aa, #0c3a3a);
+  z-index: 1;
+}
+
+.tableHeader {
+  background: linear-gradient(135deg, #0c3a3a 0%, #20b2aa 100%) !important;
+  position: relative;
+}
+
+.tableHeader::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.headerCell {
+  color: white !important;
+  font-weight: 600 !important;
+  padding: 18px 15px !important;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.9rem !important;
+  position: relative;
+  z-index: 1;
+}
+
+.tableRow {
+  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(224, 226, 230, 0.5) !important;
+}
+
+.tableRow:nth-child(even) {
+  background-color: rgba(248, 255, 254, 0.5) !important;
+}
+
+.tableRow:nth-child(odd) {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.tableRow:hover {
+  background: linear-gradient(90deg, rgba(240, 249, 255, 0.9), rgba(224, 242, 254, 0.9)) !important;
+  transform: scale(1.01);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.resolvedRow {
+  background: linear-gradient(90deg, rgba(226, 240, 217, 0.8), rgba(212, 237, 218, 0.8)) !important;
+}
+
+.tableCell {
+  padding: 16px 15px !important;
+  font-size: 0.95rem !important;
+  color: #333 !important;
+  transition: color 0.3s ease;
+}
+
+/* Badge Styles */
+.priorityBadge,
+.statusBadge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  display: inline-block;
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.priorityBadge::before,
+.statusBadge::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.priorityBadge:hover::before,
+.statusBadge:hover::before {
+  left: 100%;
+}
+
+.priorityhigh {
+  background: linear-gradient(135deg, #dc3545, #c82333);
+  color: white;
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+}
+
+.prioritymedium {
+  background: linear-gradient(135deg, #fd7e14, #e8590c);
+  color: white;
+  box-shadow: 0 4px 12px rgba(253, 126, 20, 0.3);
+}
+
+.prioritylow {
+  background: linear-gradient(135deg, #28a745, #1e7e34);
+  color: white;
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+}
+
+.statusresolved {
+  background: linear-gradient(135deg, #28a745, #1e7e34);
+  color: white;
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+}
+
+.statuspending {
+  background: linear-gradient(135deg, #ffc107, #e0a800);
+  color: #212529;
+  box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
+}
+
+.statusinprogress {
+  background: linear-gradient(135deg, #17a2b8, #138496);
+  color: white;
+  box-shadow: 0 4px 12px rgba(23, 162, 184, 0.3);
+}
+
+.statusescalated {
+  background: linear-gradient(135deg, #dc3545, #c82333);
+  color: white;
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+}
+
+.statusonhold {
+  background: linear-gradient(135deg, #6c757d, #545b62);
+  color: white;
+  box-shadow: 0 4px 12px rgba(108, 117, 125, 0.3);
+}
+
+/* Chart Section */
+.chartSection {
+  margin-bottom: 50px;
+}
+
+.chartContainer {
+  display: flex;
+  gap: 40px;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.chartWrapper {
+  flex: 1;
+  min-width: 300px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.chartWrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #0c3a3a, #20b2aa, #0c3a3a);
+}
+
+.chartWrapper:hover {
+  transform: translateY(-5px);
+}
+
+.chartWrapper h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #0c3a3a;
+  margin-bottom: 25px;
+  text-align: center;
+  position: relative;
+}
+
+.chartWrapper h3::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background: #20b2aa;
+  border-radius: 1px;
+}
+
+.chartBox {
+  height: 400px;
+  position: relative;
+}
+
+/* Action Section */
+.actionSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.exportButtons {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.button:hover::before {
+  left: 100%;
+}
+
+.backButton {
+  background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+  color: white;
+}
+
+.backButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(220, 53, 69, 0.3);
+}
+
+.pdfButton {
+  background: linear-gradient(135deg, #005a50 0%, #007a6b 100%);
+  color: white;
+}
+
+.pdfButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 90, 80, 0.3);
+}
+
+.excelButton {
+  background: linear-gradient(135deg, #333 0%, #555 100%);
+  color: white;
+}
+
+.excelButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(51, 51, 51, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .issueReportContainer.sidebarOpen {
+    margin-left: 200px;
+  }
+
+  .issueReportContainer.sidebarClosed {
+    margin-left: 60px;
+  }
+
+  .chartContainer {
+    gap: 30px;
+  }
+
+  .chartWrapper {
+    min-width: 250px;
+  }
+}
+
+@media (max-width: 992px) {
+  .issueReportContainer.sidebarOpen,
+  .issueReportContainer.sidebarClosed {
+    margin-left: 0;
+  }
+
+  .headerSection h1 {
+    font-size: 2rem;
+  }
+
+  .chartContainer {
+    flex-direction: column;
+  }
+
+  .chartWrapper {
+    width: 100%;
+    min-width: auto;
+  }
+
+  .actionSection {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .exportButtons {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .issueReportContainer {
+    padding: 15px;
+  }
+
+  .headerSection {
+    padding: 20px;
+  }
+
+  .headerSection h1 {
+    font-size: 1.8rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .tableContainer {
+    overflow-x: auto;
+  }
+
+  .headerCell,
+  .tableCell {
+    padding: 12px 10px !important;
+    font-size: 0.85rem !important;
+  }
+
+  .chartWrapper {
+    padding: 20px;
+  }
+
+  .chartBox {
+    height: 300px;
+  }
+
+  .chartWrapper h3 {
+    font-size: 1.1rem;
+  }
+
+  .actionSection {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .issueReportContainer {
+    padding: 10px;
+  }
+
+  .headerSection {
+    padding: 15px;
+  }
+
+  .headerSection h1 {
+    font-size: 1.5rem;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+  }
+
+  .button {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 14px;
+  }
+
+  .exportButtons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .chartWrapper {
+    padding: 15px;
+  }
+
+  .chartBox {
+    height: 250px;
+  }
+
+  .priorityBadge,
+  .statusBadge {
+    font-size: 10px;
+    padding: 4px 8px;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .button,
+  .tableRow,
+  .chartWrapper,
+  .priorityBadge,
+  .statusBadge {
+    transition: none;
+    animation: none;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .tableContainer,
+  .headerSection,
+  .chartWrapper,
+  .actionSection {
+    border: 2px solid #000;
+  }
+
+  .tableHeader {
+    border-bottom: 3px solid #000;
+  }
+}
+
+/* Print styles */
+@media print {
+  .issueReportContainer {
+    margin-left: 0;
+    padding: 0;
+  }
+
+  .actionSection {
+    display: none;
+  }
+
+  .chartSection {
+    page-break-inside: avoid;
+  }
+}

@@ -1,0 +1,510 @@
+/* Main Content */
+.maiNContent {
+  padding: 20px;
+  background: linear-gradient(135deg, #f8fffe 0%, #e5f0ec 100%);
+  min-height: 100vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box;
+  margin-left: -20px;
+  transition: margin-left 0.3s ease;
+}
+
+/* Notification container */
+.contners {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.contners::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #0c3a3a, #20b2aa, #0c3a3a);
+}
+
+/* Header styling */
+.d-flex {
+  display: flex;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.mb-3 {
+  margin-bottom: 20px;
+}
+
+/* Notification Icon & Title */
+.notificationIcons {
+  font-size: 28px;
+  color: #15959d;
+  margin-right: 12px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0c3a3a;
+  margin: 0;
+  background: linear-gradient(135deg, #0c3a3a 0%, #20b2aa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Search Bar */
+.searchBarContainers {
+  position: relative;
+  width: 100%;
+  max-width: 350px;
+}
+
+.searchInputs {
+  width: 100%;
+  padding: 12px 45px 12px 20px;
+  border: 2px solid rgba(21, 149, 157, 0.2);
+  border-radius: 25px;
+  font-size: 14px;
+  outline: none;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.searchInputs:focus {
+  border-color: #15959d;
+  box-shadow: 0 0 0 4px rgba(21, 149, 157, 0.1);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.searchIcons {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #15959d;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.searchIcons:hover {
+  color: #0c3a3a;
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* Info Message */
+.infoMessage {
+  background: linear-gradient(135deg, rgba(21, 149, 157, 0.1) 0%, rgba(12, 58, 58, 0.05) 100%);
+  border: 1px solid rgba(21, 149, 157, 0.2);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 20px;
+  color: #0c3a3a;
+  font-size: 14px;
+  position: relative;
+  overflow: hidden;
+}
+
+.infoMessage::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, #15959d, #20b2aa);
+}
+
+/* Tabs */
+.navTabs {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+}
+
+.navItem {
+  list-style: none;
+}
+
+.navItem button {
+  padding: 12px 20px;
+  border: 2px solid rgba(21, 149, 157, 0.2);
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.8);
+  color: #15959d;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.navItem button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.navItem button:hover::before {
+  left: 100%;
+}
+
+.navItem button:hover {
+  border-color: #15959d;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(21, 149, 157, 0.2);
+}
+
+.navItem button.active {
+  background: linear-gradient(135deg, #15959d 0%, #20b2aa 100%);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(21, 149, 157, 0.3);
+}
+
+/* Filter and Sort Controls */
+.form-select {
+  padding: 10px 15px;
+  border: 2px solid rgba(21, 149, 157, 0.2);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.8);
+  color: #333;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.form-select:focus {
+  border-color: #15959d;
+  box-shadow: 0 0 0 3px rgba(21, 149, 157, 0.1);
+  outline: none;
+}
+
+/* Notification List */
+.notificationRows {
+  border-bottom: 1px solid rgba(224, 224, 224, 0.5);
+  padding: 20px 0;
+  transition: all 0.3s ease;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.notificationRows:hover {
+  background: linear-gradient(90deg, rgba(248, 249, 250, 0.8), rgba(240, 249, 255, 0.8));
+  transform: translateX(8px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid #20b2aa;
+}
+
+.notificationRows.unread {
+  border-left: 4px solid #15959d;
+  background: linear-gradient(90deg, rgba(240, 249, 255, 0.6), rgba(248, 255, 254, 0.6));
+  position: relative;
+}
+
+.notificationRows.unread::after {
+  content: "NEW";
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: linear-gradient(135deg, #ff4757, #ff3742);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+/* Notification Message */
+.notificationTimestamps {
+  font-size: 12px;
+  color: #888;
+  font-weight: 500;
+}
+
+/* Mark as Read Button */
+.markAsReadButton {
+  background: linear-gradient(135deg, #15959d, #20b2aa);
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-height: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.markAsReadButton::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.markAsReadButton:hover::before {
+  left: 100%;
+}
+
+.markAsReadButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(21, 149, 157, 0.4);
+  background: linear-gradient(135deg, #108484, #15959d);
+}
+
+/* Table Styling */
+.table {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+.textCenter {
+  text-align: center;
+  padding: 40px 20px;
+  color: #666;
+  font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .maiNContent {
+    margin-left: -15px;
+  }
+}
+
+@media (max-width: 992px) {
+  .maiNContent {
+    margin-left: 0;
+    padding: 15px;
+  }
+
+  .contners {
+    padding: 20px;
+  }
+
+  .d-flex {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+  }
+
+  .justify-content-between {
+    justify-content: flex-start;
+  }
+
+  .searchBarContainers {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .maiNContent {
+    padding: 12px;
+  }
+
+  .contners {
+    padding: 15px;
+    border-radius: 12px;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .notificationIcons {
+    font-size: 24px;
+  }
+
+  .searchInputs {
+    padding: 10px 40px 10px 15px;
+    font-size: 14px;
+  }
+
+  .navTabs {
+    gap: 8px;
+  }
+
+  .navItem button {
+    padding: 10px 16px;
+    font-size: 13px;
+    min-height: 40px;
+  }
+
+  .form-select {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  .notificationRows {
+    padding: 15px 0;
+  }
+
+  .markAsReadButton {
+    padding: 8px 12px;
+    font-size: 11px;
+    min-height: 36px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .maiNContent {
+    padding: 8px;
+  }
+
+  .contners {
+    padding: 12px;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  .notificationIcons {
+    font-size: 20px;
+  }
+
+  .searchInputs {
+    padding: 8px 35px 8px 12px;
+    font-size: 13px;
+  }
+
+  .navItem button {
+    padding: 8px 12px;
+    font-size: 12px;
+    min-height: 36px;
+  }
+
+  .form-select {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+
+  .markAsReadButton {
+    padding: 6px 10px;
+    font-size: 10px;
+    min-height: 32px;
+  }
+
+  .notificationTimestamps {
+    font-size: 11px;
+  }
+}
+
+/* Enhanced Loading States */
+.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.loadingSpinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #15959d;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .maiNContent {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    color: #ffffff;
+  }
+
+  .contners {
+    background: rgba(45, 45, 45, 0.95);
+    color: #ffffff;
+  }
+
+  .searchInputs {
+    background: rgba(61, 61, 61, 0.8);
+    color: #ffffff;
+    border-color: #555;
+  }
+
+  .notificationRows {
+    border-color: #444;
+  }
+
+  .notificationRows:hover {
+    background: linear-gradient(90deg, rgba(61, 61, 61, 0.8), rgba(77, 77, 77, 0.8));
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .markAsReadButton {
+    background: #000000;
+    border: 2px solid #ffffff;
+  }
+
+  .notificationRows {
+    border: 1px solid #000000;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .notificationIcons,
+  .searchIcons,
+  .navItem button,
+  .markAsReadButton,
+  .notificationRows {
+    animation: none;
+    transition: none;
+  }
+}

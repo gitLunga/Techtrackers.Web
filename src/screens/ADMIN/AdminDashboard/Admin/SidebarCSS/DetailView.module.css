@@ -1,0 +1,523 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 10px;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.header-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.department-dropdown {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: white;
+  font-size: 14px;
+  min-width: 200px;
+  max-width: 100%;
+}
+
+.department-label {
+  background-color: #e9ecef;
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-size: 12px;
+  color: #495057;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.more-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  gap: 5px;
+  white-space: nowrap;
+}
+
+.more-button:hover {
+  background-color: #0056b3;
+}
+
+.detail-content {
+  background-color: #ffffff;
+  padding: 20px;
+  margin-top: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.issue-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.issue-logged-by {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 200px;
+}
+
+.logged-by {
+  flex: 1;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.issue-priority,
+.issue-date {
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.priority {
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: white;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.priority.high {
+  background-color: red;
+}
+
+.priority.medium {
+  background-color: orange;
+}
+
+.priority.low {
+  background-color: green;
+}
+
+.issue-location {
+  margin: 15px 0;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+}
+
+.issue-location p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.issue-description,
+.issue-attachments {
+  margin: 20px 0;
+}
+
+.issue-attachments h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.attachment {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.attachment:hover {
+  background-color: #f8f9fa;
+}
+
+.attachment img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.issue-status {
+  margin-top: 15px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+}
+
+.status {
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.status.pending {
+  background-color: orange;
+  color: white;
+}
+
+.status.closed {
+  background-color: #000000;
+  color: white;
+}
+
+.status.resolved {
+  background-color: green;
+  color: white;
+}
+
+.status.inprogress {
+  background-color: #007bff;
+  color: white;
+}
+
+.status.escalated {
+  background-color: #dc3545;
+  color: white;
+}
+
+.pending-note {
+  font-size: 0.9rem;
+  color: #cc8800;
+  margin-top: 4px;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.back-button-d {
+  background-color: gray;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.back-button-d:hover {
+  background-color: darkgray;
+}
+
+.reopen-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.reopen-button:hover {
+  background-color: #218838;
+}
+
+.close-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.close-button:hover {
+  background-color: #c82333;
+}
+
+/* Popup styles */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+.popup-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.popup-buttons button {
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  flex: 1;
+  transition: background-color 0.3s ease;
+}
+
+.popup-buttons button:first-child {
+  background-color: gray;
+  color: white;
+}
+
+.popup-buttons button:first-child:hover {
+  background-color: darkgray;
+}
+
+.popup-buttons button:last-child {
+  background-color: #dc3545;
+  color: white;
+}
+
+.popup-buttons button:last-child:hover {
+  background-color: #c82333;
+}
+
+/* Image Viewer */
+.image-viewer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.image-viewer-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.image-viewer-content img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.image-viewer-content button {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  background-color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 15px;
+    margin: 0;
+  }
+
+  .detail-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .detail-header h2 {
+    font-size: 20px;
+    margin: 0;
+  }
+
+  .header-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .department-dropdown {
+    min-width: 100%;
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+
+  .department-label {
+    max-width: 100%;
+    white-space: normal;
+  }
+
+  .detail-content {
+    padding: 15px;
+  }
+
+  .issue-info {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .issue-logged-by {
+    min-width: 100%;
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .back-button-d,
+  .reopen-button,
+  .close-button {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .popup-content {
+    margin: 20px;
+    padding: 15px;
+  }
+
+  .popup-buttons {
+    flex-direction: column;
+  }
+
+  .popup-buttons button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-container {
+    padding: 10px;
+  }
+
+  .detail-header {
+    padding: 10px;
+  }
+
+  .detail-header h2 {
+    font-size: 18px;
+  }
+
+  .more-button {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .detail-content {
+    padding: 10px;
+  }
+
+  .issue-location p {
+    font-size: 12px;
+  }
+
+  .attachment {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .attachment img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .priority {
+    font-size: 10px;
+    padding: 3px 8px;
+  }
+
+  .status {
+    font-size: 10px;
+    padding: 3px 8px;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .more-button,
+  .back-button-d,
+  .reopen-button,
+  .close-button,
+  .attachment {
+    transition: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .detail-header,
+  .detail-content {
+    border: 2px solid #000;
+  }
+
+  .department-dropdown {
+    border: 2px solid #000;
+  }
+}

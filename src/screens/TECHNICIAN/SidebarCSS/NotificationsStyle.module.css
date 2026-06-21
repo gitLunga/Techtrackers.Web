@@ -1,0 +1,713 @@
+/* Enhanced Notifications with Animations and Better Responsiveness */
+
+.notificationsContainer {
+  background: linear-gradient(135deg, #eef9f9, #f0fafa);
+  padding: 24px;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.notificationsContainer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #0c3a3a, #277777, #0c3a3a);
+  border-radius: 12px 12px 0 0;
+}
+
+.notificationsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  animation: slideInFromTop 0.6s ease-out;
+}
+
+.notificationsHeader .theSearchContainer {
+  justify-content: center;
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.notificationsTitle {
+  font-size: 1.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  color: #0c3a3a;
+  position: relative;
+}
+
+.notificationsTitle::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #0c3a3a, #277777);
+  animation: expandWidth 1s ease-out 0.5s forwards;
+}
+
+.notificationsTitleSvg {
+  margin-right: 12px;
+  animation: bounce 2s infinite;
+}
+
+.filterContainer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.theSearchContainer {
+  position: relative;
+  animation: slideInFromRight 0.6s ease-out 0.2s both;
+}
+
+.theSearchInput {
+  padding: 12px 16px 12px 40px;
+  border: 2px solid #83ffff;
+  border-radius: 25px;
+  background-color: #fff;
+  font-size: 14px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 250px;
+}
+
+.theSearchInput:focus {
+  outline: none;
+  border-color: #0c3a3a;
+  box-shadow: 0 4px 16px rgba(12, 58, 58, 0.2);
+  transform: translateY(-1px);
+}
+
+.theSearchInput::placeholder {
+  color: #a0aec0;
+  transition: opacity 0.3s ease;
+}
+
+.theSearchInput:focus::placeholder {
+  opacity: 0.7;
+}
+
+.theSearchIcon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #a0aec0;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.theSearchInput:focus + .theSearchIcon {
+  color: #0c3a3a;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.theSearchFilterButton,
+.theSortButton {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, #eef9f9, #d4f1f1);
+  margin-right: 8px;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  color: #0c3a3a;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
+}
+
+.theSearchFilterButton::before,
+.theSortButton::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.5s;
+}
+
+.theSearchFilterButton:hover::before,
+.theSortButton:hover::before {
+  left: 100%;
+}
+
+.theSearchFilterButton:hover,
+.theSortButton:hover {
+  background: linear-gradient(135deg, #0c3a3a, #277777);
+  color: white;
+  border-color: #0c3a3a;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(12, 58, 58, 0.3);
+}
+
+.headerRight {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  animation: slideInFromRight 0.6s ease-out 0.4s both;
+}
+
+.theFilterButton img,
+.theSortButton img {
+  margin-left: 8px;
+  transition: transform 0.3s ease;
+}
+
+.theFilterButton:hover img,
+.theSortButton:hover img {
+  transform: rotate(180deg);
+}
+
+.notificationsList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.notificationItem {
+  display: flex;
+  align-items: flex-start;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  border-bottom: 1px solid #e2e8f0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  animation: slideInFromLeft 0.6s ease-out;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.notificationItem::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, #0c3a3a, #277777);
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
+}
+
+.notificationItem:hover::before {
+  transform: scaleY(1);
+}
+
+.notificationItem:hover {
+  transform: translateX(8px);
+  box-shadow: 0 8px 24px rgba(12, 58, 58, 0.15);
+  background: linear-gradient(135deg, #ffffff, #f8fffe);
+}
+
+.notificationItem:nth-child(even) {
+  animation-delay: 0.1s;
+}
+
+.notificationItem:nth-child(3n) {
+  animation-delay: 0.2s;
+}
+
+.notificationItem p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.notificationProfile {
+  background: linear-gradient(135deg, #edf2f7, #e2e8f0);
+  border-radius: 50%;
+  margin-right: 20px;
+  padding: 4px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.notificationProfile::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(12, 58, 58, 0.1), transparent);
+  transform: rotate(45deg);
+  transition: all 0.6s ease;
+  opacity: 0;
+}
+
+.notificationProfile:hover::before {
+  opacity: 1;
+  animation: shimmer 1s ease-in-out;
+}
+
+.notificationProfile:hover {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 4px 12px rgba(12, 58, 58, 0.2);
+}
+
+.notificationContent {
+  flex-grow: 1;
+  max-width: 75%;
+}
+
+.notificationSender {
+  font-weight: 600;
+  color: #0c3a3a;
+  transition: color 0.3s ease;
+}
+
+.notificationMessage {
+  font-weight: normal;
+  color: #4a5568;
+  margin-top: 4px;
+}
+
+.notificationSubject,
+.notificationIssue {
+  font-size: 14px;
+  color: #4a5568;
+  margin-top: 8px;
+}
+
+.notificationSubject {
+  font-weight: 600;
+  color: #757575;
+}
+
+.notificationAction {
+  font-size: 14px;
+  color: #2c7a7b;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  margin-top: 8px;
+}
+
+.notificationAction::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #0c3a3a;
+  transition: width 0.3s ease;
+}
+
+.notificationAction:hover::after {
+  width: 100%;
+}
+
+.notificationAction:hover {
+  color: #0c3a3a;
+  transform: translateX(4px);
+}
+
+.notificationMeta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  min-width: 200px;
+  max-width: 200px;
+  gap: 12px;
+}
+
+.notificationTime,
+.notificationTime2 {
+  font-size: 12px;
+  color: #718096;
+  font-weight: 500;
+}
+
+.notificationTime2 {
+  display: none;
+}
+
+.notificationViewButton {
+  padding: 10px 24px;
+  background: linear-gradient(135deg, #0c3a3a, #277777);
+  color: white;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.notificationViewButton::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease;
+}
+
+.notificationViewButton:hover::before {
+  width: 100px;
+  height: 100px;
+}
+
+.notificationViewButton:hover {
+  background: linear-gradient(135deg, #277777, #1a5f5f);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(12, 58, 58, 0.3);
+}
+
+.techChatBtn {
+  padding: 8px 16px;
+  margin-top: 8px;
+  background: linear-gradient(135deg, #0c3a3a, #277777);
+  color: white;
+  border-radius: 4px;
+  border: none;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.techChatBtn:hover {
+  background: linear-gradient(135deg, #277777, #1a5f5f);
+  transform: translateY(-1px);
+}
+
+.techColabBtns {
+  display: grid;
+  gap: 8px;
+}
+
+/* Dropdown Styles */
+.notificationDropdown {
+  position: relative;
+}
+
+.notificationDropdownContent {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  min-width: 180px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  animation: dropdownSlide 0.3s ease-out;
+}
+
+.notificationDropdown:hover .notificationDropdownContent {
+  display: block;
+}
+
+.notificationDropdownItem {
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.notificationDropdownItem::before {
+  content: "";
+  position: absolute;
+  left: -100%;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(12, 58, 58, 0.1), transparent);
+  transition: left 0.3s ease;
+}
+
+.notificationDropdownItem:hover::before {
+  left: 100%;
+}
+
+.notificationDropdownItem:hover {
+  background: linear-gradient(135deg, #0c3a3a, #277777);
+  color: #fff;
+  transform: translateX(4px);
+}
+
+/* Enhanced Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes expandWidth {
+  from {
+    width: 0;
+  }
+  to {
+    width: 60px;
+  }
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
+}
+
+@keyframes dropdownSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Enhanced Responsive Design */
+@media (max-width: 1024px) {
+  .notificationsContainer {
+    padding: 20px;
+  }
+
+  .theSearchInput {
+    width: 200px;
+  }
+
+  .notificationMeta {
+    min-width: 150px;
+    max-width: 150px;
+  }
+}
+
+@media (max-width: 768px) {
+  .notificationsContainer {
+    padding: 16px;
+  }
+
+  .notificationsHeader {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  .notificationsTitle {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .filterContainer {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .theSearchInput {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .notificationMeta {
+    flex-direction: row;
+    min-width: 100%;
+    max-width: 100%;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .notificationViewButton {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+
+  .notificationTime {
+    display: none;
+  }
+
+  .notificationTime2 {
+    display: block;
+    font-size: 11px;
+  }
+
+  .notificationProfile {
+    display: none;
+  }
+
+  .notificationContent {
+    max-width: 100%;
+  }
+
+  .notificationItem:hover {
+    transform: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .notificationsContainer {
+    padding: 12px;
+    border-radius: 8px;
+  }
+
+  .notificationsHeader {
+    margin-bottom: 20px;
+  }
+
+  .notificationsTitle {
+    font-size: 1.25rem;
+  }
+
+  .theSearchFilterButton,
+  .theSortButton {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .filterContainer {
+    gap: 8px;
+  }
+
+  .notificationDropdownContent {
+    min-width: 120px;
+    left: 0;
+    right: auto;
+  }
+
+  .notificationItem {
+    flex-direction: column;
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .notificationContent {
+    max-width: 100%;
+  }
+
+  .notificationMeta {
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+  }
+
+  .notificationTime2 {
+    font-size: 10px;
+  }
+
+  .notificationViewButton {
+    width: auto;
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+
+  .notificationsList {
+    gap: 12px;
+  }
+}
+
+/* Loading States */
+.notificationsContainer.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.notificationsContainer.loading::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}

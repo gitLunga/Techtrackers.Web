@@ -1,0 +1,110 @@
+.admin-dashboard {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+  margin-top: 85px;
+  margin-left: 100px;
+  transition: margin-left 0.3s ease;
+  min-height: calc(100vh - 85px);
+  overflow-x: auto;
+}
+
+/* Sidebar states */
+.main-content.sidebar-open {
+  margin-left: 300px;
+}
+
+.main-content.sidebar-closed {
+  margin-left: 100px;
+}
+
+/* Desktop responsive adjustments */
+@media (min-width: 1024px) {
+  .main-content {
+    padding: 30px;
+  }
+
+  .main-content.sidebar-open {
+    margin-left: 320px;
+  }
+
+  .main-content.sidebar-closed {
+    margin-left: 100px;
+  }
+}
+
+/* Tablet responsive */
+@media (max-width: 1023px) and (min-width: 769px) {
+  .main-content {
+    margin-left: 90px;
+    padding: 20px;
+  }
+
+  .main-content.sidebar-open {
+    margin-left: 270px;
+  }
+
+  .main-content.sidebar-closed {
+    margin-left: 90px;
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .admin-dashboard {
+    flex-direction: column;
+  }
+
+  .main-content {
+    margin-left: 0;
+    margin-top: 70px;
+    padding: 15px;
+    width: 100%;
+    min-height: calc(100vh - 70px);
+  }
+
+  .main-content.sidebar-open,
+  .main-content.sidebar-closed {
+    margin-left: 0;
+  }
+
+  /* Prevent horizontal scroll on mobile */
+  .main-content {
+    overflow-x: hidden;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding: 10px;
+    margin-top: 65px;
+    min-height: calc(100vh - 65px);
+  }
+}
+
+/* Ensure content doesn't get cut off */
+.main-content > * {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Smooth transitions */
+@media (prefers-reduced-motion: no-preference) {
+  .main-content {
+    transition: margin-left 0.3s ease, padding 0.3s ease;
+  }
+}
+
+/* Print styles */
+@media print {
+  .main-content {
+    margin-left: 0;
+    margin-top: 0;
+    padding: 0;
+  }
+}

@@ -1,0 +1,265 @@
+
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #004d4e;
+  color: white;
+  height: 60px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+
+/* Main Content */
+.container {
+  display: flex;
+  flex: 1;
+  margin-top: 60px; /* Add margin-top to account for header height */
+  overflow: hidden;
+}
+
+.mainContent {
+  padding: 10px;
+  flex: 1;
+  overflow-y: auto;
+  transition: margin-left 0.2s ease;
+  margin-bottom: 20px;
+
+}
+/* Adjusting margin-left for when sidebar is toggled */
+.mainContent.sidebar-open {
+  margin-left: 90px; /* Adjust based on your sidebar width */
+}
+
+.mainContent.sidebar-closed {
+  margin-left: 70px; /* Adjust based on your sidebar width when closed */
+}
+
+/* Success Message */
+.successMessage {
+  background-color: #e6f7e6;
+  border: 1px solid #b2d8b2;
+  color: #2e7d32;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+.Required {
+  color: red;
+  margin-left: 5px; /* Add some space between label and asterisk */
+  font-weight: bold;
+}
+/* Form Styles */
+.logIssueForm {
+  display: block;
+  background-color: #B3B3B3;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+}
+
+.logIssueForm h2 {
+  margin-bottom: 20px;
+  color: black; /* Set both the heading and the icon color to black */
+  font-size: 18px; /* Reduced font size */
+  display: flex;
+  align-items: center;
+}
+
+.logIssueForm h2 svg {
+  margin-right: 10px; /* Optional: Adds some space between the icon and text */
+  color: #108484; /* Ensure the icon color is black */
+  font-size: 35px;
+}
+
+.logIssueForm label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #333;
+}
+
+.logIssueForm input,
+.logIssueForm select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.logIssueForm .formRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.logIssueForm .Box {
+  width: 45%;
+}
+.formRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.Box {
+  flex: 1;
+  margin-right: 20px; /* Adds spacing between the fields */
+}
+
+.box:last-child {
+  margin-right: 0; /* Removes margin for the last item */
+}
+
+.Box label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.Box select {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Ensures padding doesn't affect width */
+}
+
+.form-ctrl,
+.Box select {
+  height: 40px; /* Controls the height of the input and select boxes */
+}
+
+.FformButonss {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.fileInputWrapper {
+  margin-bottom: 20px;
+}
+.logIssueForm textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.logIssueForm input[type="file"] {
+  width: 45%; 
+  padding: 10px; 
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #333;
+  font-size: 14px;
+}
+.fileInputWrapper {
+  display: flex;
+  flex-direction: column; 
+  margin-bottom: 20px; 
+}
+
+.fileInputWrapper input {
+  margin-bottom: 5px; 
+}
+
+.fileInputWrapper .fileFormatHint {
+  font-size: 12px;
+  color: #666; 
+  margin-left: 2px; 
+}
+.logIssueForm .FformButons {
+  display: flex;
+  justify-content: flex-end; 
+  gap: 15px; 
+}
+.logIssueForm .FformButons button {
+  padding: 10px 15px;
+  background-color: #004d4e;
+  color: rgb(241, 241, 241);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#issue-title {
+  background-color: #fff;
+}
+
+.logIssueForm .FformButons button:hover {
+  background-color: #003c3d;
+}
+.errorMessage {
+  color: red; /* Set the text color to red */
+  font-size: 0.875rem; /* Optional: Adjust the font size */
+  margin-top: 0.25rem; /* Optional: Add some space above the message */
+}
+#issue-title {
+background-color: #fff; /* White background for clarity */
+height: 35px; /* Slightly increased height for better usability */
+padding: 8px; /* Increased padding for better text spacing */
+font-size: 14px; /* Maintain readable font size */
+border: 1px solid #ccc; /* Subtle border to define the field */
+border-radius: 4px; /* Rounded edges for a polished look */
+box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle inset shadow */
+margin-bottom: 10px; /* Space below the field */
+width: 100%; /* Full width within the container */
+max-width: 400px; /* Limit maximum width for better layout */
+transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Smooth transitions */
+}
+
+/* Focus state */
+#issue-title:focus {
+border-color: #108484; /* Highlight border with a teal color */
+outline: none; /* Remove default outline */
+box-shadow: 0 0 5px rgba(16, 132, 132, 0.5); /* Add a subtle glow effect */
+}
+
+/* Hover state */
+#issue-title:hover {
+border-color: #888; /* Slightly darker border on hover */
+}
+
+/* Error state */
+#issue-title.error {
+border-color: red; /* Highlight border in red for errors */
+background-color: #ffe6e6; /* Light red background for errors */
+box-shadow: inset 0 1px 3px rgba(255, 0, 0, 0.1); /* Subtle red shadow */
+}
+
+/* Responsive behavior */
+@media (max-width: 600px) {
+#issue-title {
+  width: 100%; /* Full-width on smaller screens */
+  font-size: 12px; /* Adjust font size for smaller screens */
+  height: 30px; /* Reduce height for smaller screens */
+}
+}
+
+
+
+

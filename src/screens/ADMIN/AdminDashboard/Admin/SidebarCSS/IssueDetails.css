@@ -1,0 +1,381 @@
+.issue-details-container {
+  width: 100%;
+  max-width: 800px; /* Ensures it doesn’t get too wide on large screens */
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f4ffff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+.issue {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.issue a {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.issue-details-container .issue h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: px;
+  color: #555;
+}
+
+.issue-details-container .issue-Title a {
+  margin-top: 50rel;
+}
+.issue-header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; /* Ensure wrapping on smaller screens */
+  margin-top: -30px;
+}
+
+.issue-requestor {
+  flex: 1; /* Both sides take equal width */
+  margin-bottom: 10px;
+}
+
+.issue-info {
+  display: flex;
+  justify-content: space-between; /* Aligns priority and date on opposite ends */
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #666;
+}
+.issue-info .prio {
+  display: flex;
+  justify-content: space-between; /* Aligns priority and date on opposite ends */
+  align-items: center;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #666;
+  margin-right: 340px;
+}
+
+.issue-info .issue-date {
+  margin-top: 20px;
+  padding-top: 1px;
+}
+.priority-text {
+  margin-top: 5px;
+  margin-left: 25px;
+  padding-left: 1px;
+  padding-right: 1px;
+}
+.issue-requestor p {
+  font-size: 14px;
+  color: #888;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+}
+
+.profile .name {
+  margin-left: 10px;
+}
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #ccc;
+  margin-right: 10px;
+}
+
+.fa-user {
+  font-size: 30px;
+  background-color: #ccc;
+  margin-top: 7px;
+  margin-left: 12px;
+  color: white;
+}
+.name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #555;
+}
+
+.issue-info p {
+  margin: 5px 0;
+  font-size: 14px;
+  text-align: right;
+}
+
+.priority-text {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.priority-high {
+  color: red;
+}
+
+.priority-medium {
+  color: orange;
+}
+
+.priority-low {
+  color: green;
+}
+
+/* Issue details section */
+.issue-details {
+  margin-top: -35px;
+}
+.issue-details p {
+  font-size: 16px;
+  color: #333;
+  margin-top: -25px;
+}
+
+.issue-details h3 {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #555;
+}
+
+.issue-details h3 h4 {
+  margin-left: 10px;
+  margin-top: 30px;
+}
+.icon-description::before {
+  content: "\f03a"; /* Icon code */
+  font-family: FontAwesome;
+  margin-right: 8px;
+}
+
+.description-text {
+  margin-bottom: 30px;
+  line-height: 1.6;
+  color: #666;
+  font-size: 14px;
+}
+
+/* Attachments section */
+.attachments {
+  margin-top: -25px;
+}
+.attachments h3 {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #555;
+}
+
+.attachments h3 h4 {
+  margin-top: 25px;
+  margin-left: 10px;
+}
+.attachment {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  background-color: white;
+  margin-top: -20px;
+  font-size: 12px;
+  color: #666;
+  height: 30px;
+  width: 90px;
+  padding-right: 40px;
+}
+
+.attachment p {
+  background-color: white;
+  margin-left: 10px;
+}
+.icon-file::before {
+  content: "\f15b"; /* FontAwesome file icon */
+  font-family: FontAwesome;
+  margin-right: 8px;
+  color: #666;
+}
+
+/* Additional Info */
+.additional-info {
+  margin-bottom: 30px;
+}
+
+.additional-info p {
+  font-size: 14px;
+  color: #888;
+  margin: 5px 0;
+}
+
+/* Status Section */
+.status {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Aligns the status to the right */
+  margin-right: 20px; /* Adjust as needed to match the desired position */
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.status p {
+  margin: 0;
+  color: #333;
+  margin-right: 72px;
+}
+
+.status-text {
+  margin-left: 347px; /* Small space between "Status:" and the actual status text */
+  color: #0a4d4d; /* Status color */
+  font-size: 16px;
+  font-weight: bold;
+  padding-left: 1px;
+  padding-right: 1px;
+  margin-top: 6px;
+}
+
+.status-text.pending {
+  color: red;
+}
+
+.status-text.done {
+  color: green;
+}
+
+.status-text.ongoing {
+  color: orange;
+}
+/* Actions */
+.actions {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.accept-button,
+.decline-button {
+  padding: 14px 25px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  min-width: 50px;
+  margin: 0 -240px 0 32px;
+}
+
+.close-button {
+  padding: 9px 15px; /* Adjust padding for Close button */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  background-color: #b02a37;
+  transition: background-color 0.3s ease;
+  margin: 0 -230px 0 212px;
+  margin-bottom: 12px;
+}
+
+.accept-button {
+  background-color: #007bff;
+}
+
+.decline-button {
+  background-color: #b02a37;
+}
+
+.close-button {
+  background-color: #b02a37;
+}
+
+.accept-button:hover,
+.decline-button:hover,
+.close-button:hover {
+  opacity: 0.9;
+}
+
+.actions button:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.actions button:active {
+  transform: scale(0.98);
+}
+
+@media (max-width: 768px) {
+  .status {
+    margin-right: 12px;
+  }
+
+  .status-text {
+    margin-left: 320px;
+  }
+  .issue-info .prio {
+    display: flex;
+    justify-content: space-between; /* Aligns priority and date on opposite ends */
+    align-items: center;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666;
+    margin-right: 250px;
+  }
+
+  .priority-text {
+    margin-top: 5px;
+    margin-left: 75px;
+    padding-left: 1px;
+    padding-right: 1px;
+  }
+
+  .close-button {
+    padding: 9px 15px; /* Adjust padding for Close button */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 10px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    background-color: #b02a37;
+    transition: background-color 0.3s ease;
+    margin: 0 -230px 0 172px;
+    margin-bottom: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* For Mobile devices */
+  .status {
+    margin-right: 5px;
+  }
+
+  .status-text {
+    font-size: 14px;
+  }
+
+  .issue-details-container {
+    padding: 10px;
+  }
+
+  .actions button {
+    padding: 10px;
+    font-size: 12px;
+    width: 100%;
+  }
+}

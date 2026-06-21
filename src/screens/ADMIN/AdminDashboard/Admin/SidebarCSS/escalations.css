@@ -1,0 +1,535 @@
+/* General Styles */
+body {
+  background-color: rgba(217, 217, 217, 0.27);
+  font-family: "Istok Web", sans-serif;
+}
+
+.container-fluid {
+  padding: 0 5%;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+h1,
+h2,
+h4 {
+  font-family: "Istok Web", sans-serif;
+  font-weight: 700;
+}
+
+hr {
+  border-top: 10px solid #108181;
+  margin: 20px 0;
+}
+
+.card {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+/* Issue Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.header h1 {
+  font-size: 36px;
+  color: #0c3a3a;
+  margin: 0;
+}
+
+.issue-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 16px;
+  gap: 5px;
+}
+
+.issue-info p {
+  margin: 0;
+  font-size: 14px;
+  color: #6a6a6a;
+}
+
+.sla-escalation {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.sla-escalation h4 {
+  margin: 0;
+  color: #0c3a3a;
+  font-size: 18px;
+}
+
+.sla-escalation div {
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+}
+
+/* Status Section */
+.status-section {
+  margin: 40px 0;
+}
+
+.status-label {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #0c3a3a;
+}
+
+.progress-container {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.progress-bar-container {
+  width: 100%;
+  height: 12px;
+  background-color: #e0e0e0;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+.progress-bar {
+  height: 100%;
+  transition: width 0.3s ease, background-color 0.3s ease;
+  border-radius: 6px;
+}
+
+.progress-steps {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  min-width: 80px;
+}
+
+.step img {
+  width: 32px;
+  height: 32px;
+  margin-bottom: 8px;
+}
+
+.step h5 {
+  margin: 0;
+  font-size: 14px;
+  color: #555;
+  text-align: center;
+  font-weight: 600;
+}
+
+.step.active h5 {
+  color: #0c4643;
+  font-weight: 700;
+}
+
+.step.active.PENDING h5 {
+  color: #ffcc00;
+}
+
+.step.active.INPROGRESS h5 {
+  color: #007bff;
+}
+
+.step.active.RESOLVED h5 {
+  color: #28a745;
+}
+
+.step.active.ESCALATED h5 {
+  color: #ff0000;
+}
+
+.step.active.CLOSED h5 {
+  color: #48494b;
+}
+
+/* Tabs Section */
+.tabs {
+  display: flex;
+  justify-content: space-evenly;
+  border-bottom: 3px solid #108181;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tabs .tab {
+  padding: 12px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #108181;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  flex: 1;
+  min-width: 100px;
+  text-align: center;
+}
+
+.tabs .tab.active {
+  border-bottom: 3px solid #108181;
+  color: #0c5a5a;
+}
+
+.tabs .tab:hover {
+  color: #0c5a5a;
+  background-color: rgba(16, 129, 129, 0.1);
+}
+
+/* Case Details */
+.case-details {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.case-details .card {
+  flex: 1;
+  min-width: 300px;
+  padding: 20px;
+  background-color: white;
+}
+
+.card h4 {
+  color: #108181;
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.table {
+  width: 100%;
+  margin-top: 10px;
+  border-collapse: collapse;
+}
+
+.table td {
+  padding: 10px 8px;
+  font-size: 14px;
+  border-bottom: 1px solid #eee;
+}
+
+.table td:first-child {
+  font-weight: 600;
+  color: #666;
+  width: 40%;
+}
+
+.table td:last-child {
+  color: #333;
+}
+
+.empty-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  font-size: 18px;
+  color: #a1a1a1;
+  text-align: center;
+}
+
+/* First Response */
+.response-time {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  font-size: 18px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.response-time img {
+  width: 24px;
+  height: 24px;
+}
+
+.response-time h2 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 700;
+  color: #000000;
+  text-align: center;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .container-fluid {
+    padding: 0 3%;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px;
+    text-align: left;
+  }
+
+  .header h1 {
+    font-size: 28px;
+  }
+
+  .issue-info {
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .sla-escalation {
+    align-items: flex-start;
+    width: 100%;
+    margin-top: 15px;
+  }
+
+  .sla-escalation h4 {
+    font-size: 16px;
+  }
+
+  .sla-escalation div {
+    font-size: 13px;
+  }
+
+  .status-label {
+    font-size: 20px;
+  }
+
+  .progress-bar-container {
+    height: 10px;
+  }
+
+  .step img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .step h5 {
+    font-size: 12px;
+  }
+
+  .tabs {
+    flex-direction: column;
+    border-bottom: none;
+  }
+
+  .tabs .tab {
+    border-bottom: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    padding: 10px 15px;
+    font-size: 16px;
+  }
+
+  .tabs .tab.active {
+    background-color: #108181;
+    color: white;
+    border-bottom: 1px solid #108181;
+  }
+
+  .case-details {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .case-details .card {
+    min-width: auto;
+    padding: 15px;
+  }
+
+  .card h4 {
+    font-size: 18px;
+  }
+
+  .table td {
+    padding: 8px 6px;
+    font-size: 13px;
+  }
+
+  .response-time h2 {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container-fluid {
+    padding: 0 2%;
+  }
+
+  .header {
+    padding: 12px;
+  }
+
+  .header h1 {
+    font-size: 24px;
+  }
+
+  .issue-info p {
+    font-size: 12px;
+  }
+
+  .sla-escalation h4 {
+    font-size: 14px;
+  }
+
+  .sla-escalation div {
+    font-size: 12px;
+  }
+
+  .status-label {
+    font-size: 18px;
+  }
+
+  .progress-steps {
+    gap: 5px;
+  }
+
+  .step {
+    min-width: 60px;
+  }
+
+  .step img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .step h5 {
+    font-size: 11px;
+  }
+
+  .tabs .tab {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  .case-details .card {
+    padding: 12px;
+  }
+
+  .card h4 {
+    font-size: 16px;
+  }
+
+  .table td {
+    padding: 6px 4px;
+    font-size: 12px;
+  }
+
+  .table td:first-child {
+    width: 45%;
+  }
+
+  .response-time h2 {
+    font-size: 24px;
+  }
+
+  .empty-card {
+    height: 150px;
+    font-size: 16px;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 360px) {
+  .header h1 {
+    font-size: 20px;
+  }
+
+  .progress-steps {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .step {
+    flex-direction: row;
+    min-width: auto;
+    width: 100%;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+
+  .step img {
+    margin-bottom: 0;
+  }
+
+  .tabs .tab {
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+
+  .table {
+    font-size: 11px;
+  }
+
+  .table td:first-child {
+    width: 50%;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .progress-bar,
+  .tabs .tab {
+    transition: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .header,
+  .card {
+    border: 2px solid #000;
+  }
+
+  .tabs .tab.active {
+    border: 2px solid #108181;
+  }
+}
+
+/* Focus styles for keyboard navigation */
+.tabs .tab:focus {
+  outline: 2px solid #108181;
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  .container-fluid {
+    padding: 0;
+  }
+
+  .header,
+  .case-details .card {
+    box-shadow: none;
+    border: 1px solid #000;
+  }
+}

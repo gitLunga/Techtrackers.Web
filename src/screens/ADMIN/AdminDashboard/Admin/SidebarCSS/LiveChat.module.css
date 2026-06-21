@@ -1,0 +1,135 @@
+.live-chat-fullscreen {
+  top: 60px; /* Adjust this value to fit below your header */
+  left: 250px; /* Adjust this value to fit next to your sidebar */
+  transform: translate(0, 0); /* No centering needed with offset */
+  width: calc(100% - 260px); /* Adjust based on sidebar width */
+  max-width: 1000px;
+  max-height: calc(100vh - 100px); /* Adjust based on header height */
+  background-color: #fff;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  overflow: hidden;
+  z-index: 1000;
+  margin-top: -520px;
+}
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  background-color: #0c3a3a;
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 1010; /* Ensure it stays on top */
+}
+
+.back-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  margin-right: 10px;
+}
+
+.chat-messages {
+  padding: 16px;
+  overflow-y: auto;
+  max-height: calc(80vh - 160px); /* Adjust based on header and input height */
+}
+
+.message {
+  margin-bottom: 12px;
+}
+
+.user {
+  text-align: right;
+  color: #333;
+}
+
+.staff {
+  text-align: left;
+  color: #444;
+}
+
+.message-content {
+  background-color: #f1f1f1;
+  padding: 10px;
+  border-radius: 8px;
+  display: inline-block;
+}
+
+.message-timestamp {
+  font-size: 0.8em;
+  color: #999;
+}
+
+.attachment-preview img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  margin-right: 8px;
+}
+
+.chat-input {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border-top: 1px solid #ddd;
+}
+
+.chat-input input[type="text"] {
+  flex: 1;
+  padding: 8px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  margin-right: 8px;
+}
+
+.attachment-button {
+  background: none;
+  color: #333;
+  border: none;
+  cursor: pointer;
+}
+
+.attachment-preview {
+  display: flex;
+  align-items: center;
+  margin-left: 15px;
+}
+
+.attachment-preview span {
+  font-size: 0.9em;
+  color: #666;
+  margin-left: 8px;
+}
+
+.attachment-preview button {
+  background: none;
+  border: none;
+  color: red;
+  cursor: pointer;
+  margin-left: 8px;
+}
+
+.send-button {
+  background: none;
+  color: #333;
+  border: none;
+  cursor: pointer;
+}
+
+.user .message-content {
+  background-color: #d1e7dd; /* Light green for user messages */
+  color: #0f5132;
+  text-align: right;
+  border-radius: 12px 12px 0 12px;
+}
+
+.staff .message-content {
+  background-color: #f1f1f1; /* Light grey for staff messages */
+  color: #333;
+  text-align: left;
+  border-radius: 12px 12px 12px 0;
+}

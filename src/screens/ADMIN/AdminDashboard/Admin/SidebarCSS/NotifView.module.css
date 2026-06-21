@@ -1,0 +1,374 @@
+.issueDetailsContainer {
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f4ffff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+.error {
+  text-align: center;
+  color: #dc3545;
+  font-size: 18px;
+  padding: 40px 20px;
+  background-color: #f8d7da;
+  border-radius: 8px;
+  border: 1px solid #f5c6cb;
+}
+
+.issue {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.issue h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0;
+  color: #555;
+}
+
+.issueHeader {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  gap: 15px;
+}
+
+.issueRequestor {
+  flex: 1;
+  min-width: 250px;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.profile img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 12px;
+  object-fit: cover;
+}
+
+.name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
+
+.issueInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #666;
+}
+
+.issueDate {
+  font-size: 15px;
+  color: #666;
+  margin: 0;
+}
+
+.notificationType {
+  font-size: 15px;
+  color: #666;
+  font-weight: 500;
+  margin: 0;
+}
+
+.notificationMessage {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.notificationMessage h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 12px;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 8px;
+}
+
+.notificationMessage p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #444;
+  margin: 0;
+  word-wrap: break-word;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 30px;
+}
+
+.closeButton {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  background-color: #6c757d;
+  transition: all 0.3s ease;
+  min-width: 100px;
+}
+
+.closeButton:hover {
+  background-color: #5a6268;
+  transform: translateY(-1px);
+}
+
+.closeButton:active {
+  transform: translateY(0);
+}
+
+.closeButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(108, 117, 125, 0.3);
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .issueDetailsContainer {
+    margin: 10px;
+    padding: 15px;
+  }
+
+  .issue h2 {
+    font-size: 20px;
+  }
+
+  .issueHeader {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .issueRequestor {
+    min-width: auto;
+    width: 100%;
+  }
+
+  .profile {
+    margin-bottom: 12px;
+  }
+
+  .profile img {
+    width: 44px;
+    height: 44px;
+  }
+
+  .name {
+    font-size: 16px;
+  }
+
+  .issueInfo {
+    gap: 6px;
+  }
+
+  .issueDate,
+  .notificationType {
+    font-size: 14px;
+  }
+
+  .notificationMessage {
+    padding: 15px;
+    margin: 15px 0;
+  }
+
+  .notificationMessage h3 {
+    font-size: 16px;
+  }
+
+  .notificationMessage p {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .actions {
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .closeButton {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .issueDetailsContainer {
+    margin: 5px;
+    padding: 12px;
+  }
+
+  .issue h2 {
+    font-size: 18px;
+  }
+
+  .profile img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .name {
+    font-size: 15px;
+  }
+
+  .issueDate,
+  .notificationType {
+    font-size: 13px;
+  }
+
+  .notificationMessage {
+    padding: 12px;
+  }
+
+  .notificationMessage h3 {
+    font-size: 15px;
+  }
+
+  .notificationMessage p {
+    font-size: 14px;
+  }
+
+  .closeButton {
+    padding: 12px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 360px) {
+  .issueDetailsContainer {
+    margin: 2px;
+    padding: 10px;
+  }
+
+  .issue {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .issue h2 {
+    font-size: 16px;
+  }
+
+  .profile {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  .profile img {
+    margin-right: 0;
+    margin-bottom: 8px;
+  }
+
+  .issueInfo {
+    text-align: center;
+    width: 100%;
+  }
+
+  .notificationMessage {
+    padding: 10px;
+  }
+
+  .notificationMessage h3 {
+    font-size: 14px;
+  }
+
+  .notificationMessage p {
+    font-size: 13px;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .closeButton {
+    transition: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .issueDetailsContainer,
+  .notificationMessage {
+    border: 2px solid #000;
+  }
+
+  .closeButton {
+    border: 2px solid #000;
+  }
+}
+
+/* Print styles */
+@media print {
+  .issueDetailsContainer {
+    box-shadow: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .actions {
+    display: none;
+  }
+}
+
+/* Focus and interaction states */
+.issueDetailsContainer:focus-within {
+  outline: 2px solid #007bff;
+  outline-offset: 4px;
+}
+
+/* Loading state (if needed) */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  font-size: 16px;
+  color: #666;
+}
+
+/* Status color variations */
+.statusResolved {
+  color: #28a745;
+  font-weight: 600;
+}
+
+.statusInProgress {
+  color: #ffc107;
+  font-weight: 600;
+}
+
+.statusPending {
+  color: #fd7e14;
+  font-weight: 600;
+}
+
+.statusClosed {
+  color: #6c757d;
+  font-weight: 600;
+}

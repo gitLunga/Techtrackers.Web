@@ -1,0 +1,515 @@
+/* Main Container */
+.mainContainer {
+  padding: 20px;
+  background-color: #f5f5f5;
+  margin: 20px;
+  border-radius: 8px;
+  box-shadow: 10px 2px 6px rgba(0, 0, 0, 0.1);
+  margin-top: -10px;
+  overflow-x: auto;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.btnDisabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Header */
+.heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag {
+  width: 35px;
+  height: 35px;
+  object-fit: contain;
+}
+
+/* Table Controls */
+.tableControls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  gap: 15px;
+}
+
+.searchInput {
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background-color: white;
+  padding: 10px 20px;
+  font-size: 14px;
+  min-width: 200px;
+  flex: 1;
+  max-width: 300px;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: #17a2b8;
+  box-shadow: 0 0 4px rgba(23, 162, 184, 0.5);
+}
+
+.dropdownGroup {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.sortSelect,
+.filterSelect {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: white;
+  cursor: pointer;
+  min-width: 150px;
+}
+
+.sortSelect:focus,
+.filterSelect:focus {
+  outline: none;
+  border-color: #17a2b8;
+}
+
+/* Table */
+.table {
+  width: 100%;
+  margin-bottom: 20px;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  min-width: 800px;
+}
+
+.table th {
+  background-color: #108181;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 12px 10px;
+  text-align: left;
+  border-bottom: 2px solid #108181;
+  white-space: nowrap;
+}
+
+.table td {
+  padding: 12px 10px;
+  text-align: left;
+  color: #333;
+  border-bottom: 1px solid #ddd;
+  white-space: nowrap;
+}
+
+.table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.table tr:hover {
+  background-color: #f1f1f1;
+  transition: background-color 0.3s;
+}
+
+/* Modal Styles */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.modalContent {
+  background-color: #fff;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 500px;
+  max-height: 80vh;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  position: relative;
+  overflow-y: auto;
+}
+
+.modalContent h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.technicianContainer {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  background: #eef9f9;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.technicianContainer:hover {
+  background-color: #e1f7f7;
+}
+
+.technicianCheckbox {
+  margin-right: 15px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.userIcon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
+  object-fit: cover;
+}
+
+.technicianInfo {
+  flex-grow: 1;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.technicianInfo p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.technicianInfo p:first-child {
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.chevronRight {
+  font-size: 1.5rem;
+  color: #888;
+  margin-left: 15px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.chevronRight:hover {
+  color: #555;
+}
+
+.techDetailsDropdown {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  position: relative;
+  width: 100%;
+}
+
+.techDetailsDropdown p {
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+/* Buttons */
+.buttonContainer {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.btnClose {
+  background-color: #dc3545;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+  flex: 1;
+}
+
+.btnClose:hover {
+  background-color: #c82333;
+}
+
+.btnAssign {
+  background-color: #108181;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+  flex: 1;
+}
+
+.btnAssign:hover {
+  background-color: #0d6666;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .mainContainer {
+    margin: 10px;
+    padding: 15px;
+  }
+
+  .heading {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .tag {
+    width: 30px;
+    height: 30px;
+  }
+
+  .tableControls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .searchInput {
+    min-width: auto;
+    max-width: 100%;
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+
+  .dropdownGroup {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .sortSelect,
+  .filterSelect {
+    min-width: auto;
+    width: 100%;
+  }
+
+  .table {
+    min-width: 600px;
+    font-size: 14px;
+  }
+
+  .table th,
+  .table td {
+    padding: 8px 6px;
+  }
+
+  .modalContent {
+    max-width: 95%;
+    padding: 15px;
+    margin: 10px;
+  }
+
+  .modalContent h3 {
+    font-size: 1.3rem;
+  }
+
+  .technicianContainer {
+    padding: 10px;
+  }
+
+  .userIcon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .technicianInfo p {
+    font-size: 0.9rem;
+  }
+
+  .chevronRight {
+    font-size: 1.3rem;
+    margin-left: 10px;
+  }
+
+  .buttonContainer {
+    flex-direction: column;
+  }
+
+  .btnClose,
+  .btnAssign {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mainContainer {
+    margin: 5px;
+    padding: 10px;
+  }
+
+  .heading {
+    font-size: 1.3rem;
+  }
+
+  .tag {
+    width: 25px;
+    height: 25px;
+  }
+
+  .table {
+    min-width: 500px;
+    font-size: 12px;
+  }
+
+  .table th,
+  .table td {
+    padding: 6px 4px;
+  }
+
+  .modalContent {
+    padding: 12px;
+  }
+
+  .modalContent h3 {
+    font-size: 1.2rem;
+  }
+
+  .technicianContainer {
+    padding: 8px;
+  }
+
+  .userIcon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .technicianInfo p {
+    font-size: 0.85rem;
+  }
+
+  .techDetailsDropdown {
+    font-size: 0.8rem;
+    padding: 8px;
+  }
+
+  .btnClose,
+  .btnAssign {
+    padding: 8px 16px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Very small screens - stack table vertically */
+@media (max-width: 360px) {
+  .table,
+  .table thead,
+  .table tbody,
+  .table th,
+  .table td,
+  .table tr {
+    display: block;
+  }
+
+  .table thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .table tr {
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .table td {
+    border: none;
+    position: relative;
+    padding: 8px 8px 8px 35%;
+    text-align: left;
+    white-space: normal;
+    word-wrap: break-word;
+  }
+
+  .table td:before {
+    content: attr(data-label) ": ";
+    position: absolute;
+    left: 6px;
+    width: 30%;
+    padding-right: 10px;
+    white-space: nowrap;
+    font-weight: bold;
+    color: #6c757d;
+  }
+
+  .modalContent {
+    width: calc(100vw - 20px);
+    max-width: none;
+    margin: 10px;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .technicianContainer,
+  .btnClose,
+  .btnAssign,
+  .chevronRight {
+    transition: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .table {
+    border: 2px solid #000;
+  }
+
+  .modalContent {
+    border: 2px solid #000;
+  }
+
+  .technicianContainer {
+    border: 2px solid #000;
+  }
+}
+
+/* Focus styles for keyboard navigation */
+.technicianCheckbox:focus,
+.btnClose:focus,
+.btnAssign:focus,
+.searchInput:focus,
+.sortSelect:focus,
+.filterSelect:focus {
+  outline: 2px solid #108181;
+  outline-offset: 2px;
+}

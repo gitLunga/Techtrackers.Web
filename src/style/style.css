@@ -1,0 +1,348 @@
+.attachment-section {
+  display: flex;
+  align-items: center; /* Vertically center the icon */
+  margin-top: 20px; /* Adjust the top margin as needed */
+}
+.attachment-icon {
+  transition: color 0.3s; /* Smooth color transition */
+  
+}
+
+/* Styling for the attachment section */
+
+/* Optional margin to add space between the icon and the text */
+.attachment-text {
+  margin-left: 10px; /* Adjust the space between icon and text */
+  font-size: 16px;
+  font-weight: bold; /* Same color as the icon */
+}
+.modal {
+  position: fixed;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   background-color: rgba(0, 0, 0, 0.7);
+   z-index: 1000;
+}
+
+/* Style for the full-size image in the modal */
+.modal-image {
+  max-width: 90%;
+  max-height: 80%;
+  border: 2px solid #fff;
+  border-radius: 4px;
+}
+/* General container styling for the issue details */
+.issue-details-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  margin-left: 150px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative; /* Set to relative to position the button inside */
+}
+
+/* Styling the Close Button on the bottom-right */
+.close-button-container {
+  position: absolute;
+  bottom: 10px; /* Distance from the bottom */
+  right: 20px;  /* Distance from the right */
+}
+
+.close-button {
+  background-color: red; /* Red background color */
+  color: white; /* White text color */
+  border: none;
+  border-radius: 5px; /* Rounded corners */
+  padding: 10px 30px; /* Padding inside the button */
+  font-size: 16px; /* Font size */
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+.close-button:hover {
+  background-color: #d9534f; /* Darker red on hover */
+}
+
+
+.close-button:hover {
+  background-color: darkred; /* Darker red on hover */
+}
+.department-info
+{
+  font-weight: bolder;
+}
+.issue-details-container {
+  max-width: 800px;
+   margin: 0 auto;
+   background-color: white;
+   border-radius: 8px;
+   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Flex container for department info, priority, and date */
+.details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+
+/* Align department info on the left */
+.department-info {
+  flex: 1;
+}
+
+/* Center the priority info */
+.priority-info {
+  flex: 1;
+  text-align: center;
+}
+
+/* Align the issue date on the right */
+.issue-date {
+  flex: 1;
+  text-align: right;
+}
+/* Add styles for the buttons container */
+.buttons-container {
+  display: flex;
+  justify-content: flex-end; /* Align buttons to the right */
+  gap: 10px; /* Space between buttons */
+  margin-top: 20px; /* Space above buttons */
+  position: absolute;
+  bottom: 10px; /* Distance from the bottom */
+  right: 20px;
+}
+
+/* Style for Resolved button */
+.resolved-button {
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.submit-button {
+  background-color: #0B5050;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* Style for Unresolved button */
+.unresolved-button {
+  background-color: orange;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Style for Close button */
+.close-button {
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+/* Feedback Popup */
+.feedback-popup, .rating-popup,.resolved-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.feedback-popup-content, .resolved-popup-content,.rating-popup-content {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 300px; /* Adjust the width to your desired size */
+  max-width: 80%; /* Ensure it remains responsive */
+  
+}
+
+.feedback-popup-close, .rating-popup-close {
+  background-color: #6B6160;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.resolved-popup-icon {
+  cursor: pointer; /* Change the cursor to a pointer on hover */
+  width: 24px; /* Adjust the width as needed */
+  height: 24px; /* Adjust the height as needed */
+}
+.resolved-popup-close {
+  background-color:  #6B6160;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.rating-options {
+  margin: 10px 0;
+}
+
+.rating-options span {
+  cursor: pointer;
+  font-size: 24px;
+  color: gold; /* Star color */
+}
+
+/* Textarea Styles */
+textarea {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: none; /* Prevent resizing */
+}
+
+.attachment-box
+{
+  position: absolute;
+  bottom: 150px;
+  left: 20px;
+  width: 30%;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content-container {
+  display: flex;
+  flex-direction: row;
+}
+.main-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto; /* For scrolling */
+  
+}
+.app-container {
+  display: flex;
+  flex-direction: row; /* Sidebar and main content are in rows */
+  height: 100vh; /* Full viewport height */
+}
+.buttons
+{
+  background-color: #046363;
+}
+
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.app-layout {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+/*for chats*/
+.chat-icon {
+  color: #007bff;
+  cursor: pointer;
+}
+
+.chat-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 20px;
+  width: 300px;
+  z-index: 1000;
+}
+
+.chat-modal-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-messages {
+  height: 150px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.chat-input {
+  width: 100%;
+   border-radius: 4px;
+   padding: 10px;
+   margin-bottom: 10px;
+}
+
+.send-button, .close-chat-button {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.close-chat-button {
+  background-color: #dc3545;
+}
+
+.close-button-container {
+  text-align: right;
+}
+
+.attachment-box {
+  cursor: pointer;
+  color: blue;
+  text-decoration: underline;
+}
+
+/**/
+sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 250px;
+  background-color: #333;
+  transition: width 0.3s ease; 
+  overflow: hidden;
+  z-index: 9999;
+}
+

@@ -1,0 +1,142 @@
+.dashboardContainer {
+  padding: 20px;
+  margin-top: -10px;
+}
+
+.successMessage {
+  background-color: #e6f7e6;
+  border: 1px solid #b2d8b2;
+  color: #2e7d32;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.required {
+  color: red;
+  margin-left: 5px;
+  font-weight: bold;
+}
+
+.logIssueForm {
+  display: block;
+  background-color: #b3b3b3;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+}
+
+.logIssueForm h2 {
+  margin-bottom: 20px;
+  color: black;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+}
+
+.formRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.box {
+  flex: 1;
+  margin-right: 20px; /* Adds spacing between the fields */
+}
+
+.box:last-child {
+  margin-right: 0; /* Removes margin for the last item */
+}
+
+.box label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.box select {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Ensures padding doesn't affect width */
+}
+
+
+.logIssueForm label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #333;
+}
+
+.logIssueForm input,
+.logIssueForm select,
+.logIssueForm textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.fileInputWrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.fileInputWrapper input {
+  margin-bottom: 5px;
+}
+
+.fileFormatHint {
+  font-size: 12px;
+  color: #666;
+  margin-left: 2px;
+}
+.logIssueForm .formActions {
+  display: flex;
+  justify-content: flex-end; 
+  gap: 15px; 
+}
+.logIssueForm .formActions button {
+  padding: 10px 15px;
+  background-color: #004d4e;
+  color: rgb(241, 241, 241);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.formButtons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+.formButtons button {
+  padding: 10px 15px;
+  background-color: #004d4e;
+  color: rgb(241, 241, 241);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.formButtons button:hover {
+  background-color: #003c3d;
+}
+
+.errorMessage {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}

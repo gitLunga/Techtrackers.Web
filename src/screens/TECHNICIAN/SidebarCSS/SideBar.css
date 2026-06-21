@@ -1,0 +1,243 @@
+.sidebar-container {
+  width: 70px; /* Increased the closed width of the sidebar */
+  height: calc(
+    100vh - 20px
+  ); /* Subtract the header height from the viewport height */
+  background: #0c3a3a;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 0; /* Adjust padding as necessary */
+  transition: width 0.3s ease;
+  overflow: hidden;
+  position: fixed; /* Keep the sidebar fixed to the left of the viewport */
+  top: 65px; /* Start the sidebar below the header */
+  left: 0;
+  overflow-y: auto;
+}
+
+.sidebar-container.open {
+  width: 250px; /* Increased the open width of the sidebar */
+}
+
+.menu-icon {
+  display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 30px; 
+    margin-right: 10px;
+    color: white; 
+    transition: opacity 0.3s ease;
+    font-size: 30px;
+}
+
+.sidebar-container:not(.open)  .menu-icon {
+  margin-left: 15px;
+}
+
+.admin-name {
+  margin-right: 10px; /* Spacing between text and icon */
+  font-size: 25px; /* Adjust font size as necessary */
+  font-weight: bold;
+}
+
+.icon-menu {
+  height: 25px;
+}
+
+.sidebar-container.open .admin-name {
+  opacity: 1; /* Fully visible when sidebar is open */
+  margin-right: 30px;
+}
+
+.sidebar-container:not(.open) .admin-name {
+  opacity: 0; /* Hidden when sidebar is closed */
+  transition: opacity 0.3s ease; /* Smooth transition for hiding */
+}
+.sidebar-container ul {
+  list-style-type: none;
+  padding: 0;
+  font-size: 80px;
+  margin-top: -20px;
+  /* margin-left: -10px; */
+}
+
+.sidebar-container .list {
+  padding: 25px 0; /* Increased padding for larger click area */
+  cursor: pointer;
+  width: 100%;
+  display: flex; /* Ensure icon and text are aligned horizontally */
+  align-items: center;
+  padding-left: 20px; /* Adjust padding for better alignment */
+  background-color: #0c3a3a;
+  margin-top: -1px;
+  border-radius: 12px;
+  border: 5px solid #0c3a3a;
+}
+
+.sidebar-container .list.selected{
+  background-color: #108484;
+}
+.sidebar-container li:hover {
+  background-color: #094d4d;
+}
+
+.sidebar-container-icon {
+  width: 25px; /* Increased icon size */
+  height: 25px;
+  margin-right: 15px; /* Increased space between icon and text */
+  font-size: 40px; /* Make icons larger */
+}
+
+.sidebar-container li span {
+  font-size: 20px; /* Increased the font size of the labels */
+  display: none;
+}
+
+.sidebar-container.open li span {
+  display: inline-block; /* Show the label text only when the sidebar is open */
+  font-size: 18px; /* Further increase label size when the sidebar is open */
+}
+
+.drop-icon {
+  transition: transform 0.3s ease; /* Smooth transition */
+  width: 15px; /* Adjust as per your icon size */
+  height: 10px;
+  margin-left: 120px; /* Adjust spacing next to the label */
+}
+
+.rotate {
+  transform: rotate(180deg); /* Rotate the icon 180 degrees */
+}
+
+.dropdown-toggle {
+  padding-right: 0px; /* Adjust to align the arrow with the text */
+}
+
+.dropdown {
+  padding-left: 20px; /* Adjust the indentation */
+}
+
+.dropdown li {
+  padding: 20px 80px; /* Adjust padding for better spacing */
+  cursor: pointer;
+  background-color: #0c3a3a; /* Keep the background consistent */
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  max-height: 100%;
+}
+
+.dropdown-item.selected {
+  background-color: #108484; /* Highlight color for the selected dropdown item */
+  color: white; /* Change text color if needed */
+}
+
+.dropdown li span {
+  text-decoration: none;
+  font-weight: 500;
+}
+.dropdown li:hover {
+  background-color: #094d4d;
+}
+
+.app-container {
+  display: flex;
+  flex-grow: 1; /* Take up the remaining space */
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+  margin-top: 100px;
+  margin-left: 300px; /* Main content shifts to the right when sidebar is open */
+}
+.main-content {
+  flex-grow: 1; /* Take up the remaining space */
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+  margin-top: 100px;
+  margin-left: 250px; /* Main content shifts to the right when sidebar is open */
+}
+
+.sidebar-container:not(.open) + .main-content {
+  margin-left: 100px; /* When sidebar is closed, reduce the space */
+}
+
+.log-out {
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+  font-weight: bolder;
+  font-size: 80px;
+  margin-top: 60px;
+  margin-left: -10px;
+}
+
+/* .sidebar-container.open .log-out{
+  margin-left: 10px;
+} */
+ 
+.log-out li {
+  background-color: #0c3a3a;
+  width: 50px;
+}
+
+.log-out li:hover {
+  background-color: #0c3a3a;
+}
+.log-out li img {
+  width: 30px;
+  height: 30px;
+}
+.log-out li img:hover {
+  width: 40px;
+  height: 40px;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .sidebar-container {
+    display: none;
+  }
+
+  .main-content {
+    margin-left: 0px !important; /* Main content margin adjusts for smaller sidebar */
+  }
+
+  .sidebar-container.open {
+    width: 250px;
+  }
+  .sidebar-container.open + .main-content {
+    margin-left: 200px; /* Main content adjusts for expanded sidebar */
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar-container.open {
+    width: 100%;
+  }
+  .sidebar-container:not(.open) + .main-content {
+    margin-left: 60px;
+  }
+  .sidebar-container.open + .main-content {
+    display: none;
+  }
+  .sidebar-container.open ul {
+    list-style-type: none;
+    padding: 0; 
+    font-size: 80px;
+    margin-top: -20px;
+    width: 100%;
+  }
+  .menu-icon {
+    margin-right: auto;
+    margin-left: 2%;
+  }
+  .sidebar-container .list.selected{
+    background-color: #108484;
+  }
+  .sidebar-container li:hover {
+    width: 100%;
+  }
+}

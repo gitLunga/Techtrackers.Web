@@ -1,0 +1,381 @@
+.sidebarContainer {
+  width: 80px;
+  height: calc(100vh - 65px);
+  background: #0c3a3a;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  transition: width 0.3s ease;
+  overflow: hidden;
+  position: fixed;
+  top: 65px;
+  left: 0;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.sidebarContainer.open {
+  width: 280px;
+}
+
+.menu-icon {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 30px;
+  color: white;
+  font-size: 24px;
+  padding: 10px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.menu-icon:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidebarContainer:not(.open) .menu-icon {
+  justify-content: center;
+}
+
+.mobile-sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+  padding: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+}
+
+.admin-name {
+  margin-right: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.sidebarContainer.open .admin-name {
+  opacity: 1;
+}
+
+.sidebarContainer:not(.open) .admin-name {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.sidebarContainer ul {
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+  margin: 0;
+}
+
+.sidebarContainer .list {
+  padding: 15px 20px;
+  cursor: pointer;
+  width: calc(100% - 20px);
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  margin: 5px 10px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  position: relative;
+  min-height: 50px;
+}
+
+.sidebarContainer .list.selected {
+  background-color: #108484;
+}
+
+.sidebarContainer .list:hover {
+  background-color: #094d4d;
+}
+
+.sidebar-container-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+.sidebarContainer:not(.open) .sidebar-container-icon {
+  margin-right: 0;
+}
+
+.sidebarContainer li span {
+  font-size: 16px;
+  display: none;
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.sidebarContainer.open li span {
+  display: inline-block;
+}
+
+.drop-icon {
+  transition: transform 0.3s ease;
+  width: 12px;
+  height: 12px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.rotate {
+  transform: rotate(180deg);
+}
+
+.dropdown {
+  padding-left: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.dropdown .dropdown-item {
+  padding: 12px 20px 12px 50px;
+  cursor: pointer;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  width: calc(100% - 20px);
+  margin: 2px 10px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  min-height: 40px;
+}
+
+.dropdown-item.selected {
+  background-color: #108484;
+  color: white;
+}
+
+.dropdown .dropdown-item:hover {
+  background-color: #094d4d;
+}
+
+.dropdown .dropdown-item span {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.log-out {
+  margin-top: auto;
+  padding: 20px 0;
+  width: 100%;
+}
+
+.log-out li {
+  background-color: transparent;
+  padding: 15px 20px;
+  margin: 5px 10px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.log-out li:hover {
+  background-color: #dc3545;
+}
+
+.log-out li img {
+  width: 24px;
+  height: 24px;
+  transition: all 0.3s ease;
+}
+
+.log-out li:hover img {
+  transform: scale(1.1);
+}
+
+.log-out li span {
+  margin-left: 15px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* Overlay for mobile */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: none;
+}
+
+/* Desktop responsive adjustments */
+@media (min-width: 1024px) {
+  .sidebarContainer.open {
+    width: 300px;
+  }
+}
+
+/* Tablet responsive */
+@media (max-width: 1023px) and (min-width: 769px) {
+  .sidebarContainer {
+    width: 70px;
+  }
+
+  .sidebarContainer.open {
+    width: 250px;
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .sidebar-overlay {
+    display: block;
+  }
+
+  .sidebarContainer {
+    width: 0;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease, width 0.3s ease;
+    height: 100vh;
+    top: 0;
+    padding-top: 20px;
+  }
+
+  .sidebarContainer.open {
+    width: 280px;
+    transform: translateX(0);
+  }
+
+  /* Hide desktop menu icon on mobile */
+  .menu-icon {
+    display: none;
+  }
+
+  /* Show mobile header */
+  .mobile-sidebar-header {
+    display: flex;
+  }
+
+  .mobile-sidebar-header .admin-name {
+    margin-right: 0;
+    font-size: 18px;
+  }
+
+  .sidebarContainer .list {
+    padding: 12px 15px;
+    margin: 3px 8px;
+  }
+
+  .sidebar-container-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .sidebarContainer li span {
+    font-size: 14px;
+  }
+
+  .dropdown .dropdown-item {
+    padding: 10px 15px 10px 40px;
+    margin: 2px 8px;
+  }
+
+  .dropdown .dropdown-item span {
+    font-size: 13px;
+  }
+
+  .log-out {
+    padding: 15px 0;
+  }
+
+  .log-out li {
+    padding: 12px 15px;
+    margin: 3px 8px;
+  }
+
+  .log-out li img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .log-out li span {
+    font-size: 14px;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .sidebarContainer.open {
+    width: 100vw;
+  }
+
+  .mobile-sidebar-header .admin-name {
+    font-size: 16px;
+  }
+
+  .sidebarContainer li span {
+    font-size: 13px;
+  }
+
+  .dropdown .dropdown-item span {
+    font-size: 12px;
+  }
+}
+
+/* Desktop only - hide mobile header */
+@media (min-width: 769px) {
+  .mobile-sidebar-header {
+    display: none;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .sidebarContainer,
+  .sidebarContainer .list,
+  .dropdown .dropdown-item,
+  .log-out li,
+  .drop-icon,
+  .menu-icon {
+    transition: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .sidebarContainer {
+    border-right: 2px solid white;
+  }
+
+  .sidebarContainer .list.selected {
+    border: 2px solid white;
+  }
+}
+
+/* Focus styles for keyboard navigation */
+.sidebarContainer .list:focus,
+.dropdown .dropdown-item:focus,
+.log-out li:focus,
+.menu-icon:focus {
+  outline: 2px solid #108484;
+  outline-offset: 2px;
+}
+
+/* Smooth scrolling for sidebar content */
+.sidebarContainer {
+  scroll-behavior: smooth;
+}
+
+/* Prevent text selection on interactive elements */
+.menu-icon,
+.sidebarContainer .list,
+.dropdown .dropdown-item,
+.log-out li {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}

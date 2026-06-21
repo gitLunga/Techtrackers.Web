@@ -1,0 +1,793 @@
+/* Enhanced Technician Ratings with Animations and Better UX */
+
+.dashboardContainer {
+  padding: 24px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #f8fffe, #eef9f9);
+  min-height: 100vh;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.mainHeading {
+  text-align: left;
+  font-size: 2.5em;
+  margin-bottom: 40px;
+  color: #0b5353;
+  position: relative;
+  font-weight: 700;
+  animation: slideInFromLeft 0.8s ease-out;
+}
+
+.mainHeading::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #0b5353, #277777);
+  animation: expandWidth 1s ease-out 0.5s forwards;
+}
+
+/* Loading States */
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  gap: 20px;
+}
+
+.loadingSpinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #e2e8f0;
+  border-top: 4px solid #0b5353;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Grid layout for the 3 columns */
+.gridContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px;
+  margin-bottom: 50px;
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.gridContainer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #0b5353, #277777, #0b5353);
+  border-radius: 16px 16px 0 0;
+}
+
+.gridContainer.animate {
+  animation: slideInFromBottom 0.8s ease-out;
+}
+
+/* Column Styling */
+.firstCol,
+.secondCol,
+.thirdCol {
+  text-align: center;
+  position: relative;
+  padding: 20px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.firstCol:hover,
+.secondCol:hover,
+.thirdCol:hover {
+  background: linear-gradient(135deg, #f8fffe, #eef9f9);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(11, 83, 83, 0.15);
+}
+
+.columnTitle {
+  font-size: 1.2em;
+  font-weight: 600;
+  color: #0b5353;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Divider styling for columns */
+.columnDivider {
+  width: 2px;
+  height: 80%;
+  background: linear-gradient(180deg, transparent, #0b5353, transparent);
+  position: absolute;
+  right: -15px;
+  top: 10%;
+  z-index: 1;
+  opacity: 0.3;
+}
+
+/* Rating row styling */
+.ratingRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 8px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  animation: slideInFromLeft 0.6s ease-out;
+}
+
+.ratingRow:hover {
+  background: rgba(11, 83, 83, 0.05);
+  transform: translateX(4px);
+}
+
+/* Progress bar styling */
+.progressBarContainer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 12px;
+}
+
+.ratingNumber {
+  font-weight: 600;
+  color: #0b5353;
+  font-size: 1.1em;
+  min-width: 20px;
+}
+
+.progressBar {
+  background: linear-gradient(135deg, #e2e8f0, #f7fafc);
+  border-radius: 10px;
+  height: 24px;
+  width: 70%;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.progress {
+  height: 100%;
+  border-radius: 10px;
+  position: relative;
+  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+  background: linear-gradient(135deg, #28a745, #20c997);
+  overflow: hidden;
+}
+
+.progress::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: shimmer 2s infinite;
+}
+
+.percentageText {
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+  font-weight: 600;
+  font-size: 12px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* User rating next to the progress bar */
+.userRating {
+  font-size: 1.1em;
+  color: #0b5353;
+  font-family: "Segoe UI", sans-serif;
+  font-weight: 600;
+  min-width: 30px;
+  text-align: center;
+}
+
+/* Rating summary section in the second column */
+.ratingSummary {
+  text-align: center;
+  padding: 20px;
+  animation: fadeInScale 0.8s ease-out 0.3s both;
+}
+
+.ratingValue {
+  font-size: 3.5em;
+  font-weight: 700;
+  color: #0b5353;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(11, 83, 83, 0.2);
+  animation: countUp 1.5s ease-out 0.5s both;
+}
+
+.ratingLabel {
+  font-size: 1.1em;
+  color: #4a5568;
+  margin: 8px 0 20px 0;
+  font-weight: 500;
+}
+
+.starContainer {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 16px;
+}
+
+.star {
+  font-size: 2.2em;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  animation: starPop 0.6s ease-out;
+}
+
+.star.filled {
+  color: #0b5353;
+  text-shadow: 0 2px 8px rgba(11, 83, 83, 0.3);
+}
+
+.star.empty {
+  color: #e2e8f0;
+}
+
+.star:hover {
+  transform: scale(1.2) rotate(5deg);
+  filter: drop-shadow(0 4px 8px rgba(11, 83, 83, 0.4));
+}
+
+/* Total reviews in the third column */
+.thirdCol {
+  animation: slideInFromRight 0.8s ease-out 0.4s both;
+}
+
+.thirdCol .columnTitle {
+  margin-bottom: 30px;
+}
+
+.totalReviewsContainer {
+  padding: 20px;
+}
+
+.totalReviewsNumber {
+  font-size: 3em;
+  font-weight: 700;
+  color: #0b5353;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(11, 83, 83, 0.2);
+  animation: countUp 1.5s ease-out 0.7s both;
+}
+
+.reviewPeriod {
+  font-size: 0.9em;
+  color: #718096;
+  margin-top: 12px;
+  font-weight: 500;
+}
+
+/* User Reviews Section */
+.userReviews {
+  background: white;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  animation: slideInFromBottom 0.8s ease-out 0.6s both;
+}
+
+.userReviews::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #0b5353, #277777, #0b5353);
+  border-radius: 16px 16px 0 0;
+}
+
+.reviewsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.reviewsHeader h4 {
+  font-size: 1.5em;
+  color: #0b5353;
+  margin: 0;
+  font-weight: 600;
+}
+
+.reviewsCount {
+  background: linear-gradient(135deg, #0b5353, #277777);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9em;
+  font-weight: 600;
+}
+
+.userReviewsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Container for each user review */
+.userReview {
+  display: flex;
+  align-items: flex-start;
+  padding: 24px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #ffffff, #f8fffe);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  animation: slideInFromLeft 0.6s ease-out;
+}
+
+.userReview::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, #0b5353, #277777);
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
+}
+
+.userReview:hover::before {
+  transform: scaleY(1);
+}
+
+.userReview:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(11, 83, 83, 0.15);
+  border-color: #0b5353;
+}
+
+/* User details section inside the user review */
+.userDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 120px;
+  margin-right: 20px;
+}
+
+.userImageContainer {
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.userImage {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid #0b5353;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(11, 83, 83, 0.2);
+}
+
+.userImage:hover {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 8px 24px rgba(11, 83, 83, 0.3);
+}
+
+.userImageOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(11, 83, 83, 0.8), rgba(39, 119, 119, 0.8));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.userImageContainer:hover .userImageOverlay {
+  opacity: 1;
+}
+
+.userInitial {
+  color: white;
+  font-weight: 600;
+  font-size: 1.2em;
+}
+
+.userInfo {
+  text-align: center;
+}
+
+.userName {
+  font-weight: 600;
+  color: #0b5353;
+  margin: 0 0 4px 0;
+  font-size: 1em;
+}
+
+.reviewDate {
+  font-size: 0.85em;
+  color: #718096;
+  margin: 0;
+}
+
+/* Vertical Divider between user details and feedback */
+.divider {
+  width: 2px;
+  height: 80px;
+  background: linear-gradient(180deg, transparent, #0b5353, transparent);
+  margin: 0 20px;
+  opacity: 0.3;
+}
+
+/* User feedback section */
+.userFeedback {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.userRatingContainer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.userRatingStars {
+  display: flex;
+  gap: 2px;
+}
+
+.reviewStar {
+  font-size: 1.3em;
+  transition: all 0.3s ease;
+}
+
+.reviewStar.filled {
+  color: #0b5353;
+  text-shadow: 0 2px 4px rgba(11, 83, 83, 0.3);
+}
+
+.reviewStar.empty {
+  color: #e2e8f0;
+}
+
+.ratingValue {
+  font-size: 0.9em;
+  color: #718096;
+  font-weight: 500;
+}
+
+.reviewComment {
+  font-size: 1em;
+  color: #4a5568;
+  line-height: 1.6;
+  margin: 0;
+  padding: 16px;
+  background: rgba(11, 83, 83, 0.05);
+  border-radius: 8px;
+  border-left: 4px solid #0b5353;
+  font-style: italic;
+}
+
+/* No Reviews State */
+.noReviews {
+  text-align: center;
+  padding: 60px 20px;
+  color: #718096;
+}
+
+.noReviewsIcon {
+  font-size: 4em;
+  margin-bottom: 20px;
+  opacity: 0.7;
+}
+
+.noReviews p {
+  font-size: 1.1em;
+  margin: 8px 0;
+}
+
+.noReviewsSubtext {
+  font-size: 0.9em;
+  color: #a0aec0;
+}
+
+/* Enhanced Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes expandWidth {
+  from {
+    width: 0;
+  }
+  to {
+    width: 120px;
+  }
+}
+
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes starPop {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Enhanced Responsive Design */
+@media (max-width: 1024px) {
+  .gridContainer {
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .columnDivider {
+    display: none;
+  }
+
+  .userReview {
+    padding: 20px;
+  }
+
+  .userImage {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboardContainer {
+    padding: 16px;
+  }
+
+  .mainHeading {
+    font-size: 2em;
+    text-align: center;
+  }
+
+  .gridContainer {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 20px;
+  }
+
+  .columnDivider {
+    display: none;
+  }
+
+  .progressBar {
+    width: 60%;
+  }
+
+  .userRating {
+    font-size: 1em;
+  }
+
+  .ratingValue,
+  .totalReviewsNumber {
+    font-size: 2.5em;
+  }
+
+  .userReview {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+  }
+
+  .userDetails {
+    flex-direction: row;
+    align-items: center;
+    margin-right: 0;
+    margin-bottom: 16px;
+  }
+
+  .userImageContainer {
+    margin-right: 16px;
+    margin-bottom: 0;
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .userFeedback {
+    text-align: left;
+  }
+
+  .reviewsHeader {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboardContainer {
+    padding: 12px;
+  }
+
+  .mainHeading {
+    font-size: 1.8em;
+    margin-bottom: 30px;
+  }
+
+  .gridContainer {
+    padding: 16px;
+    gap: 20px;
+  }
+
+  .userReviews {
+    padding: 20px;
+  }
+
+  .userReview {
+    padding: 16px;
+  }
+
+  .userImage {
+    width: 40px;
+    height: 40px;
+  }
+
+  .reviewComment {
+    padding: 12px;
+    font-size: 0.9em;
+  }
+
+  .ratingValue,
+  .totalReviewsNumber {
+    font-size: 2em;
+  }
+
+  .star {
+    font-size: 1.8em;
+  }
+
+  .reviewStar {
+    font-size: 1.1em;
+  }
+}
+
+/* Loading Animation */
+.dashboardContainer.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.dashboardContainer.loading::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}

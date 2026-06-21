@@ -1,0 +1,146 @@
+.container {
+    padding: 20px;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  .userRoleList {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .userRoleBox {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f9f9f9;
+    position: relative;
+    margin: 20px auto;
+    width: 80%;
+  }
+  
+  .userRoleName {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  /* Dropdown */
+  .dropdown {
+    position: relative;
+  }
+  
+  .dropdownButton {
+    background: none;
+    border: none;
+    font-size: 35px;
+    cursor: pointer;
+    color: black;
+  }
+  
+  .dropdownButton:focus {
+    outline: none;
+  }
+  
+  .dropdownMenu {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 25px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    z-index: 10;
+  }
+  
+  .dropdownMenu li {
+    padding: 10px;
+    cursor: pointer;
+    text-align: left;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .dropdownMenu li:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .dropdown:hover .dropdownMenu {
+    display: block;
+  }
+  
+  /* Popup */
+  .popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .popupContent {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    width: 400px;
+  }
+  
+  .input,
+  .textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .popupButtons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .saveButton,
+  .cancelButton {
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .saveButton {
+    background-color: #28a745;
+    color: white;
+    border: none;
+  }
+  
+  .cancelButton {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+  }
+  .backButton {
+    background-color: #0c3a3a;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  
+  .backButton:hover {
+    background-color: #0c3a3a;
+  }
+  

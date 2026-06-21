@@ -1,0 +1,124 @@
+/* Style for the logo */
+.logos {
+    padding: 0px;
+    margin: 0%;
+    padding-left: 15px;
+    cursor: pointer;
+}
+
+/* Navbar brand adjustments */
+.nav-brand, .navbar-brand {
+    margin: 0px;
+}
+  /* Active button style for mobile view */
+  .nav_button.active {
+    color: #ffffff; /* Highlight active link */
+    background-color: #45a049; /* Background color for active button */
+    transition: background-color 0.3s ease;
+}
+
+/* Navbar button styles */
+.nav_button {
+    margin-left: 20px;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: white; /* Button text color */
+    border-radius: 4px;
+    background-color: #0C3A3A; /* Button background color */
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.nav_button:hover {
+    background-color: #0b4242; /* Button hover effect */
+}
+
+/* Header container */
+#header {
+    background-color: #0C3A3A;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100px;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease;
+}
+
+/* Sticky header when scrolled */
+.header-scrolled {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: #0C3A3A; /* Retain background color on scroll */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Hamburger menu icon */
+.hamburger-menu {
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: white;
+}
+
+/* Navbar links container */
+.nav-links {
+    display: flex;  
+}
+
+.nav-links.open {
+    display: block;
+}
+
+.hamburger-icon {
+    margin-right: 10px;
+}
+
+/* Media query for responsiveness */
+@media (max-width: 905px) {
+    /* Show the hamburger menu on small screens */
+    .hamburger-menu {
+        display: block;
+    }
+
+    /* Hide nav links initially on smaller screens */
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background-color: #0C3A3A;
+        width: 100%;
+        text-align: right;
+    }
+
+    /* Show nav links when the menu is open */
+    .nav-links.open {
+        display: block;
+    }
+
+    /* Style individual buttons inside the nav links */
+    .nav_button {
+        padding: 1rem;
+        margin: 0;
+        display: block;
+        color: white;
+    }
+
+    .nav_button:hover {
+        background-color: #45a049;
+    }
+}
+
+@media (max-width: 480px) { 
+    .logos {
+        height: 3.4rem;
+    }
+    #header {
+        height: 10%;
+    }
+    
+}

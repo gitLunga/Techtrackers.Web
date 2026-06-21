@@ -1,0 +1,92 @@
+.chat {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin: 20px;
+  background-color: #f4f4f4;
+}
+
+.messages {
+  max-height: 200px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.message {
+  margin: 5px 0;
+}
+
+.message.user {
+  text-align: right;
+  color: #007bff;
+}
+
+.input-area {
+  display: flex;
+}
+
+.input-area input {
+  flex: 1;
+  padding: 8px;
+  margin-right: 5px;
+  min-height: 44px; /* Better touch target */
+}
+
+.input-area button {
+  padding: 8px 16px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+  min-height: 44px; /* Better touch target */
+  min-width: 80px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .chat {
+    padding: 15px;
+    margin: 10px;
+  }
+
+  .messages {
+    max-height: 180px;
+  }
+
+  .input-area {
+    flex-direction: column;
+  }
+
+  .input-area input {
+    margin-right: 0;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+
+  .input-area button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .chat {
+    padding: 10px;
+    margin: 5px;
+  }
+
+  .messages {
+    max-height: 150px;
+    padding: 8px;
+  }
+
+  .message {
+    font-size: 14px;
+  }
+}

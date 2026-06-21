@@ -1,0 +1,71 @@
+.otp-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f8f9fa;
+}
+
+.otp-box {
+    width: 400px;
+    padding: 2rem;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.otp-content {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.otp-form {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 30px; 
+    outline: none;
+    font-size: 16px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    position: relative;
+}
+
+.verify-btn {
+    width: 40%;
+    padding: 15px;
+    border: none;
+    border-radius: 30px;
+    background-color: #004b43;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.5));
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+}
+
+.otp-input-group {
+    display: flex;
+    justify-content: center;
+    max-width: 200px;
+    margin: 20px auto;
+}
+
+.otp-input {
+    width: 50px;
+    height: 50px;
+    font-size: 25px;
+    text-align: center;
+    margin: 0 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.otp-input:focus {
+    border-color: #97d1ca;
+    outline: none;
+}

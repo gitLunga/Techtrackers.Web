@@ -1,0 +1,508 @@
+/* Enhanced Table All Issues with Animations and Responsiveness */
+
+.controls {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 1%;
+  margin-bottom: 15px;
+  animation: slideInFromRight 0.6s ease-out;
+}
+
+.controls button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  color: #333;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.controls button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.5s;
+}
+
+.controls button:hover::before {
+  left: 100%;
+}
+
+.controls button:hover {
+  background: linear-gradient(135deg, #277777, #1a5f5f);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(39, 119, 119, 0.3);
+}
+
+.controls button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(39, 119, 119, 0.2);
+}
+
+.tableContainer {
+  width: 100%;
+  max-width: 98%;
+  margin: 20px auto;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  overflow-x: auto;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  animation: fadeInUp 0.8s ease-out;
+  position: relative;
+}
+
+.tableContainer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #277777, #1a5f5f, #277777);
+  border-radius: 12px 12px 0 0;
+}
+
+.issueTable {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.issueTable th,
+.issueTable td {
+  padding: 16px 12px;
+  text-align: left;
+  transition: all 0.3s ease;
+}
+
+.issueTable th {
+  background: linear-gradient(135deg, #9fc1b3, #8bb3a5);
+  font-size: 16px;
+  color: #2c3e50;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  cursor: pointer;
+}
+
+.issueTable th::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #277777, #1a5f5f);
+  transition: width 0.3s ease;
+}
+
+.issueTable th:hover::after {
+  width: 100%;
+}
+
+.issueTable th:hover {
+  background: linear-gradient(135deg, #8bb3a5, #7da599);
+  transform: translateY(-1px);
+}
+
+.statusSelect {
+  border: none;
+  background: transparent;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.issueTable td {
+  background-color: #f4ffff;
+  border-bottom: 1px solid #e1f5f5;
+  font-size: 14px;
+  color: #2c3e50;
+  position: relative;
+}
+
+.issueTable tbody tr {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.issueTable tbody tr:hover {
+  background: linear-gradient(135deg, #e8f8f8, #d4f1f1);
+  transform: translateX(4px);
+  box-shadow: 4px 0 12px rgba(39, 119, 119, 0.15);
+}
+
+.issueTable tbody tr:hover td {
+  background: transparent;
+}
+
+.issueTable tr:nth-child(even) td {
+  background-color: #cad8d6ed;
+}
+
+.issueTable tr:nth-child(even):hover td {
+  background: transparent;
+}
+
+.issueTable tr:nth-child(even) .status {
+  background-color: transparent;
+}
+
+.viewButton {
+  background: linear-gradient(135deg, #0a4d4d, #0d5a5a);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.viewButton::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease;
+}
+
+.viewButton:hover::before {
+  width: 100px;
+  height: 100px;
+}
+
+.viewButton:hover {
+  background: linear-gradient(135deg, #0056b3, #004494);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 86, 179, 0.3);
+}
+
+.viewButton:active {
+  transform: translateY(0);
+}
+
+.status {
+  margin-left: -20px;
+  font-size: 14px;
+  color: black;
+  border: none;
+  background-color: transparent;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.status:hover {
+  background: rgba(0, 0, 0, 0.05);
+  transform: scale(1.05);
+}
+
+.endMessage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 30px 0;
+  position: relative;
+  animation: fadeIn 1s ease-out 0.5s both;
+}
+
+.line {
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #277777, transparent);
+  margin: 0 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.line::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.closeButton {
+  margin-top: 15px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #dc3545, #c82333);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.closeButton::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.closeButton:hover::before {
+  left: 100%;
+}
+
+.closeButton:hover {
+  background: linear-gradient(135deg, #c82333, #a71e2a);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(220, 53, 69, 0.3);
+}
+
+.tableSpan {
+  position: relative;
+  background: linear-gradient(135deg, #f4ffff, #e8f8f8);
+  padding: 8px 24px;
+  border-radius: 20px;
+  font-weight: 600;
+  color: #277777;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.status:disabled {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  opacity: 0.7;
+}
+
+.status:disabled::after {
+  content: "";
+  display: none;
+}
+
+.tableContainer .closeButton {
+  background: linear-gradient(135deg, #dc3545, #c82333);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
+  cursor: pointer;
+  margin-top: 15px;
+  margin-left: 1px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.tableContainer .closeButton:hover {
+  background: linear-gradient(135deg, #c82333, #a71e2a);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(220, 53, 69, 0.3);
+}
+
+/* Enhanced Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Enhanced Responsive Design */
+@media (max-width: 1024px) {
+  .tableContainer {
+    margin: 15px auto;
+    border-radius: 8px;
+  }
+
+  .issueTable th,
+  .issueTable td {
+    padding: 12px 8px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 768px) {
+  .controls {
+    justify-content: center;
+    margin-right: 0;
+  }
+
+  .controls button {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+
+  .tableContainer {
+    margin: 10px;
+    border-radius: 6px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  }
+
+  .issueTable th,
+  .issueTable td {
+    padding: 10px 6px;
+    font-size: 12px;
+  }
+
+  .issueTable th {
+    font-size: 11px;
+  }
+
+  .viewButton {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+
+  .closeButton {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+
+  .tableSpan {
+    padding: 6px 16px;
+    font-size: 12px;
+  }
+
+  .issueTable tbody tr:hover {
+    transform: none;
+    box-shadow: none;
+    background: linear-gradient(135deg, #e8f8f8, #d4f1f1);
+  }
+}
+
+@media (max-width: 480px) {
+  .tableContainer {
+    margin: 5px;
+    overflow-x: scroll;
+  }
+
+  .issueTable {
+    min-width: 600px;
+  }
+
+  .issueTable th,
+  .issueTable td {
+    padding: 8px 4px;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  .viewButton {
+    padding: 4px 8px;
+    font-size: 10px;
+  }
+
+  .controls button {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .endMessage {
+    margin: 20px 0;
+  }
+
+  .line {
+    margin: 0 10px;
+  }
+
+  .tableSpan {
+    padding: 4px 12px;
+    font-size: 11px;
+  }
+}
+
+/* Loading Animation */
+.tableContainer.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.tableContainer.loading::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
