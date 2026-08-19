@@ -2,38 +2,74 @@
  * src/App.jsx
  * -----------------------------------------------------------------------------
  * WHY THIS FILE EXISTS
- *   The old App.js declared every route as public. Typing /admindashboard
- *   rendered the admin console for anyone — the only protection was not knowing
- *   the URL. It also contained three broken routes (`<issueReport />` with a
- *   lowercase name is parsed by JSX as an unknown HTML element, not a component,
- *   so those routes rendered nothing at all) and imported SignIn twice under two
- *   names.
+ *   The complete route table, with each route's access policy on the same line.
+ *   The old App.js declared everything public — typing /admindashboard rendered
+ *   the admin console for anyone — and contained three routes that rendered
+ *   nothing at all (`<issueReport />` with a lowercase name is parsed by JSX as
+ *   an unknown HTML element, not a component).
  *
  * WHAT IT ACHIEVES
- *   The whole route table, with its access policy visible on the same line as
- *   each route. Four role areas share ONE layout; what differs is which nav
- *   items and screens each role can reach.
- *
- *   Screens still to be rebuilt point at <ComingSoon /> rather than being
- *   omitted, so the structure is navigable and nothing 404s silently.
+ *   Four role areas sharing ONE layout and, wherever the screen is genuinely the
+ *   same job, one component. TicketList and TicketDetail each serve all four
+ *   roles because the backend scopes data by the caller's token — so "the admin
+ *   ticket list" and "the staff ticket list" are the same screen with different
+ *   results, not two codebases.
  */
 import { Routes, Route, Navigate } from 'react-router-dom';
 import ProtectedRoute from './auth/ProtectedRoute.jsx';
 import { useAuth, ROLES } from './auth/AuthContext.jsx';
 import AppLayout from './layout/AppLayout.jsx';
 
+// auth
 import SignIn from './pages/auth/SignIn.jsx';
+import ForgotPassword from './pages/auth/ForgotPassword.jsx';
+
+// shared
+import RoleDashboard from './pages/shared/RoleDashboard.jsx';
+import Notifications from './pages/shared/Notifications.jsx';
+import Profile from './pages/shared/Profile.jsx';
+import ChangePassword from './pages/shared/ChangePassword.jsx';
+
+// tickets
+import TicketList from './pages/tickets/TicketList.jsx';
+import TicketDetail from './pages/tickets/TicketDetail.jsx';
+
+// staff
 import StaffDashboard from './pages/staff/StaffDashboard.jsx';
 import LogIssue from './pages/staff/LogIssue.jsx';
-import ComingSoon from './pages/shared/ComingSoon.jsx';
+
+// technician
+import Collaborations from './pages/technician/Collaborations.jsx';
+import TechniciansList from './pages/technician/TechniciansList.jsx';
+import TechnicianStats from './pages/technician/TechnicianStats.jsx';
+
+// admin
+import UsersAdmin from './pages/admin/UsersAdmin.jsx';
+import { DepartmentsAdmin, CategoriesAdmin, SlaAdmin } from './pages/admin/ReferenceAdmin.jsx';
+
+// reports
+import ReportsOverview from './pages/reports/ReportsOverview.jsx';
+import SlaComplianceReport from './pages/reports/SlaComplianceReport.jsx';
+import TechnicianPerformanceReport from './pages/reports/TechnicianPerformanceReport.jsx';
 
 const ALL_TECH = [ROLES.TECHNICIAN, ROLES.EXTERNAL_TECHNICIAN];
 
-/** Sends "/" to the signed-in user's home, or to login if there isn't one. */
 function RootRedirect() {
   const { isAuthenticated, loading, homePath } = useAuth();
   if (loading) return null;
   return <Navigate to={isAuthenticated ? homePath : '/login'} replace />;
+}
+
+/** Routes every signed-in role gets, mounted inside each role's area. */
+function commonRoutes() {
+  return (
+    <>
+      <Route path="tickets/:id" element={<TicketDetail />} />
+      <Route path="notifications" element={<Notifications />} />
+      <Route path="profile" element={<Profile />} />
+      <Route path="change-password" element={<ChangePassword />} />
+    </>
+  );
 }
 
 export default function App() {
@@ -41,95 +77,59 @@ export default function App() {
     <Routes>
       {/* ---------------------------------------------------------- public -- */}
       <Route path="/login" element={<SignIn />} />
-      <Route path="/forgot-password" element={<ComingSoon title="Forgot password" />} />
-      <Route path="/reset-password" element={<ComingSoon title="Reset password" />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
 
       {/* ----------------------------------------------------------- staff -- */}
       <Route
         path="/staff"
-        element={
-          <ProtectedRoute allow={[ROLES.STAFF, ROLES.ADMIN, ROLES.HOD]}>
-            <AppLayout />
-          </ProtectedRoute>
-        }
+        element={<ProtectedRoute allow={[ROLES.STAFF, ROLES.ADMIN, ROLES.HOD]}><AppLayout /></ProtectedRoute>}
       >
         <Route index element={<StaffDashboard />} />
         <Route path="log-issue" element={<LogIssue />} />
-        <Route path="my-issues" element={<ComingSoon title="My issues" />} />
-        <Route path="tickets/:id" element={<ComingSoon title="Ticket detail" />} />
-        <Route path="notifications" element={<ComingSoon title="Notifications" />} />
-        <Route path="profile" element={<ComingSoon title="My profile" />} />
-        <Route path="change-password" element={<ComingSoon title="Change password" />} />
+        <Route path="my-issues" element={<TicketList title="My issues" subtitle="Every issue you have logged." />} />
+        {commonRoutes()}
       </Route>
 
       {/* ------------------------------------------------------ technician -- */}
-      <Route
-        path="/technician"
-        element={
-          <ProtectedRoute allow={ALL_TECH}>
-            <AppLayout />
-          </ProtectedRoute>
-        }
-      >
-        <Route index element={<ComingSoon title="Technician dashboard" />} />
-        <Route path="assigned" element={<ComingSoon title="Assigned to me" />} />
-        <Route path="collaborations" element={<ComingSoon title="Collaborations" />} />
-        <Route path="ratings" element={<ComingSoon title="My ratings" />} />
-        <Route path="tickets/:id" element={<ComingSoon title="Ticket detail" />} />
-        <Route path="reports" element={<ComingSoon title="Reports" />} />
-        <Route path="notifications" element={<ComingSoon title="Notifications" />} />
-        <Route path="profile" element={<ComingSoon title="My profile" />} />
-        <Route path="change-password" element={<ComingSoon title="Change password" />} />
+      <Route path="/technician" element={<ProtectedRoute allow={ALL_TECH}><AppLayout /></ProtectedRoute>}>
+        <Route index element={<RoleDashboard />} />
+        <Route path="assigned" element={<TicketList title="Assigned to me" subtitle="Tickets you are responsible for resolving." />} />
+        <Route path="collaborations" element={<Collaborations />} />
+        <Route path="ratings" element={<TechnicianStats />} />
+        <Route path="reports" element={<ReportsOverview />} />
+        {commonRoutes()}
       </Route>
 
       {/* ------------------------------------------------------------- HOD -- */}
-      <Route
-        path="/hod"
-        element={
-          <ProtectedRoute allow={[ROLES.HOD]}>
-            <AppLayout />
-          </ProtectedRoute>
-        }
-      >
-        <Route index element={<ComingSoon title="Department dashboard" />} />
-        <Route path="tickets" element={<ComingSoon title="Department tickets" />} />
-        <Route path="assign" element={<ComingSoon title="Assign work" />} />
-        <Route path="technicians" element={<ComingSoon title="Technicians" />} />
+      <Route path="/hod" element={<ProtectedRoute allow={[ROLES.HOD]}><AppLayout /></ProtectedRoute>}>
+        <Route index element={<RoleDashboard />} />
+        <Route path="tickets" element={<TicketList title="Department tickets" />} />
+        <Route path="assign" element={<TicketList title="Assign work" subtitle="Unassigned tickets waiting for a technician." fixedFilters={{ status: 'PENDING' }} />} />
+        <Route path="technicians" element={<TechniciansList />} />
+        <Route path="technicians/:id" element={<TechnicianStats />} />
         <Route path="log-issue" element={<LogIssue />} />
-        <Route path="tickets/:id" element={<ComingSoon title="Ticket detail" />} />
-        <Route path="reports" element={<ComingSoon title="Reports" />} />
-        <Route path="reports/sla" element={<ComingSoon title="SLA compliance" />} />
-        <Route path="reports/technicians" element={<ComingSoon title="Technician performance" />} />
-        <Route path="notifications" element={<ComingSoon title="Notifications" />} />
-        <Route path="profile" element={<ComingSoon title="My profile" />} />
-        <Route path="change-password" element={<ComingSoon title="Change password" />} />
+        <Route path="reports" element={<ReportsOverview />} />
+        <Route path="reports/sla" element={<SlaComplianceReport />} />
+        <Route path="reports/technicians" element={<TechnicianPerformanceReport />} />
+        {commonRoutes()}
       </Route>
 
       {/* ----------------------------------------------------------- admin -- */}
-      <Route
-        path="/admin"
-        element={
-          <ProtectedRoute allow={[ROLES.ADMIN]}>
-            <AppLayout />
-          </ProtectedRoute>
-        }
-      >
-        <Route index element={<ComingSoon title="Admin dashboard" />} />
-        <Route path="tickets" element={<ComingSoon title="All tickets" />} />
-        <Route path="assign" element={<ComingSoon title="Assign work" />} />
-        <Route path="technicians" element={<ComingSoon title="Technicians" />} />
+      <Route path="/admin" element={<ProtectedRoute allow={[ROLES.ADMIN]}><AppLayout /></ProtectedRoute>}>
+        <Route index element={<RoleDashboard />} />
+        <Route path="tickets" element={<TicketList title="All tickets" />} />
+        <Route path="assign" element={<TicketList title="Assign work" subtitle="Unassigned tickets waiting for a technician." fixedFilters={{ status: 'PENDING' }} />} />
+        <Route path="technicians" element={<TechniciansList />} />
+        <Route path="technicians/:id" element={<TechnicianStats />} />
         <Route path="log-issue" element={<LogIssue />} />
-        <Route path="tickets/:id" element={<ComingSoon title="Ticket detail" />} />
-        <Route path="users" element={<ComingSoon title="Users" />} />
-        <Route path="departments" element={<ComingSoon title="Departments" />} />
-        <Route path="categories" element={<ComingSoon title="Categories" />} />
-        <Route path="slas" element={<ComingSoon title="SLA targets" />} />
-        <Route path="reports" element={<ComingSoon title="Reports" />} />
-        <Route path="reports/sla" element={<ComingSoon title="SLA compliance" />} />
-        <Route path="reports/technicians" element={<ComingSoon title="Technician performance" />} />
-        <Route path="notifications" element={<ComingSoon title="Notifications" />} />
-        <Route path="profile" element={<ComingSoon title="My profile" />} />
-        <Route path="change-password" element={<ComingSoon title="Change password" />} />
+        <Route path="users" element={<UsersAdmin />} />
+        <Route path="departments" element={<DepartmentsAdmin />} />
+        <Route path="categories" element={<CategoriesAdmin />} />
+        <Route path="slas" element={<SlaAdmin />} />
+        <Route path="reports" element={<ReportsOverview />} />
+        <Route path="reports/sla" element={<SlaComplianceReport />} />
+        <Route path="reports/technicians" element={<TechnicianPerformanceReport />} />
+        {commonRoutes()}
       </Route>
 
       <Route path="/" element={<RootRedirect />} />
