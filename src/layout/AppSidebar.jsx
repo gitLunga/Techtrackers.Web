@@ -92,6 +92,7 @@ function SidebarContent({ onNavigate, collapsed = false, isDesktop = false, onTo
                     end={item.exact}
                     onClick={onNavigate}
                     selected={active}
+                    aria-label={collapsed ? item.label : undefined}
                     sx={{
                       minHeight: 40,
                       justifyContent: collapsed ? 'center' : 'flex-start',
