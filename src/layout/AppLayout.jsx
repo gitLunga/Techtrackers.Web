@@ -14,19 +14,31 @@
  *   Also fixes the responsive behaviour: the old sidebars were fixed-width divs
  *   that simply overlapped the content on a phone. Here the drawer is permanent
  *   on desktop and a temporary overlay on mobile, which is the standard pattern
- *   users already understand.
+ *   users already understand. Desktop users can further collapse the permanent
+ *   drawer to an icon rail; that choice is remembered across reloads.
  */
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Box, Toolbar, useMediaQuery, useTheme } from '@mui/material';
 import AppSidebar from './AppSidebar.jsx';
 import AppHeader from './AppHeader.jsx';
 import { LAYOUT } from '../theme/tokens.js';
 
+const COLLAPSE_STORAGE_KEY = 'techtrackers:sidebar-collapsed';
+
 export default function AppLayout() {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [collapsed, setCollapsed] = useState(
+    () => localStorage.getItem(COLLAPSE_STORAGE_KEY) === 'true',
+  );
+
+  useEffect(() => {
+    localStorage.setItem(COLLAPSE_STORAGE_KEY, String(collapsed));
+  }, [collapsed]);
+
+  const sidebarWidth = isDesktop && collapsed ? LAYOUT.sidebarCollapsedWidth : LAYOUT.sidebarWidth;
 
   return (
     <Box sx={{ display: 'flex', minHeight: '100vh', backgroundColor: 'background.default' }}>
@@ -34,6 +46,8 @@ export default function AppLayout() {
         isDesktop={isDesktop}
         open={mobileOpen}
         onClose={() => setMobileOpen(false)}
+        collapsed={isDesktop && collapsed}
+        onToggleCollapse={() => setCollapsed((prev) => !prev)}
       />
 
       <Box
@@ -41,10 +55,11 @@ export default function AppLayout() {
         sx={{
           flexGrow: 1,
           minWidth: 0,   // lets wide tables scroll instead of stretching the page
-          width: { lg: `calc(100% - ${LAYOUT.sidebarWidth}px)` },
+          width: { lg: `calc(100% - ${sidebarWidth}px)` },
+          transition: 'width 0.2s ease',
         }}
       >
-        <AppHeader onMenuClick={() => setMobileOpen(true)} isDesktop={isDesktop} />
+        <AppHeader onMenuClick={() => setMobileOpen(true)} isDesktop={isDesktop} sidebarWidth={sidebarWidth} />
         {/* Spacer matching the fixed header, so content starts below it. */}
         <Toolbar sx={{ minHeight: `${LAYOUT.headerHeight}px !important` }} />
 

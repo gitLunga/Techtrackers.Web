@@ -28,7 +28,7 @@ import { LAYOUT, NEUTRAL } from '../theme/tokens.js';
 
 const POLL_INTERVAL_MS = 60_000;
 
-export default function AppHeader({ onMenuClick, isDesktop }) {
+export default function AppHeader({ onMenuClick, isDesktop, sidebarWidth = LAYOUT.sidebarWidth }) {
   const { user, roles, signOut, homePath } = useAuth();
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
@@ -64,11 +64,12 @@ export default function AppHeader({ onMenuClick, isDesktop }) {
       position="fixed"
       elevation={0}
       sx={{
-        width: { lg: `calc(100% - ${LAYOUT.sidebarWidth}px)` },
-        ml: { lg: `${LAYOUT.sidebarWidth}px` },
+        width: { lg: `calc(100% - ${sidebarWidth}px)` },
+        ml: { lg: `${sidebarWidth}px` },
         backgroundColor: 'background.paper',
         borderBottom: `1px solid ${NEUTRAL[100]}`,
         color: 'text.primary',
+        transition: 'width 0.2s ease, margin-left 0.2s ease',
       }}
     >
       <Toolbar sx={{ minHeight: `${LAYOUT.headerHeight}px !important`, gap: 1 }}>
