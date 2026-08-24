@@ -63,7 +63,6 @@ function RootRedirect() {
   return <Navigate to={isAuthenticated ? homePath : '/login'} replace />;
 }
 
-/** "/" for a guest is the marketing site; for a signed-in user it's their home. */
 function PublicLanding() {
   const { isAuthenticated, loading, homePath } = useAuth();
   if (loading) return null;
