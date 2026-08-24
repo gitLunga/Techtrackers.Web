@@ -46,6 +46,8 @@ import TechnicianStats from './pages/technician/TechnicianStats.jsx';
 // admin
 import UsersAdmin from './pages/admin/UsersAdmin.jsx';
 import { DepartmentsAdmin, CategoriesAdmin, SlaAdmin } from './pages/admin/ReferenceAdmin.jsx';
+import AuditLogAdmin from './pages/admin/AuditLogAdmin.jsx';
+import AssetsAdmin from './pages/admin/AssetsAdmin.jsx';
 
 // public
 import LandingPage from './pages/public/landing/LandingPage.jsx';
@@ -136,6 +138,8 @@ export default function App() {
         <Route path="departments" element={<DepartmentsAdmin />} />
         <Route path="categories" element={<CategoriesAdmin />} />
         <Route path="slas" element={<SlaAdmin />} />
+        <Route path="assets" element={<AssetsAdmin />} />
+        <Route path="audit-log" element={<AuditLogAdmin />} />
         <Route path="reports" element={<ReportsOverview />} />
         <Route path="reports/sla" element={<SlaComplianceReport />} />
         <Route path="reports/technicians" element={<TechnicianPerformanceReport />} />

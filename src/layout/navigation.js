@@ -29,6 +29,8 @@ import ApartmentIcon from '@mui/icons-material/Apartment';
 import CategoryIcon from '@mui/icons-material/CategoryOutlined';
 import TimerIcon from '@mui/icons-material/TimerOutlined';
 import StarIcon from '@mui/icons-material/StarBorder';
+import HistoryIcon from '@mui/icons-material/History';
+import DevicesIcon from '@mui/icons-material/DevicesOther';
 import { ROLES } from '../auth/AuthContext.jsx';
 
 const ALL_TECH = [ROLES.TECHNICIAN, ROLES.EXTERNAL_TECHNICIAN];
@@ -65,6 +67,8 @@ export const NAV_ITEMS = [
   { section: 'Administration', label: 'Departments', to: 'departments', icon: ApartmentIcon, roles: [ROLES.ADMIN] },
   { section: 'Administration', label: 'Categories', to: 'categories', icon: CategoryIcon, roles: [ROLES.ADMIN] },
   { section: 'Administration', label: 'SLA Targets', to: 'slas', icon: TimerIcon, roles: [ROLES.ADMIN] },
+  { section: 'Administration', label: 'Assets', to: 'assets', icon: DevicesIcon, roles: [ROLES.ADMIN] },
+  { section: 'Administration', label: 'Audit Log', to: 'audit-log', icon: HistoryIcon, roles: [ROLES.ADMIN] },
 
   // ---- everyone -----------------------------------------------------------
   { label: 'Notifications', to: 'notifications', icon: NotificationsIcon },
