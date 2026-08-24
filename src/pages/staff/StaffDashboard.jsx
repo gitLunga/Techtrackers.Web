@@ -18,6 +18,7 @@
 import { useNavigate } from 'react-router-dom';
 import { Grid, Button, Card, CardContent, Typography, Box, Stack } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircleOutline';
+import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
 import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumberOutlined';
 import PendingActionsIcon from '@mui/icons-material/PendingActions';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
@@ -79,9 +80,14 @@ export default function StaffDashboard() {
         title={`Hello, ${greetingName}`}
         subtitle="Here is where your reported issues stand right now."
         action={
-          <Button variant="contained" startIcon={<AddCircleIcon />} onClick={() => navigate('/staff/log-issue')}>
-            Log an issue
-          </Button>
+          <Stack direction="row" spacing={1.5}>
+            <Button variant="outlined" startIcon={<QrCodeScannerIcon />} onClick={() => navigate('/staff/log-issue?scan=1')}>
+              Scan QR
+            </Button>
+            <Button variant="contained" startIcon={<AddCircleIcon />} onClick={() => navigate('/staff/log-issue')}>
+              Log an issue
+            </Button>
+          </Stack>
         }
       />
 

@@ -157,7 +157,28 @@ export const reports = {
   slaCompliance: (params = {}) => api.get('/reports/sla-compliance', { params }),
 };
 
+/* ------------------------------------------------------------ audit log --- */
+export const auditLogs = {
+  list: (params = {}) => api.get('/audit-logs', { params }),
+};
+
+/* ------------------------------------------------------------- assets ---- */
+export const assets = {
+  list: (params = {}) => api.get('/assets', { params }),
+  get: (id) => api.get(`/assets/${id}`),
+  create: (payload) => api.post('/assets', payload),
+  update: (id, payload) => api.patch(`/assets/${id}`, payload),
+  remove: (id) => api.delete(`/assets/${id}`),
+};
+
+/* --------------------------------------------------------- browser push -- */
+export const push = {
+  publicKey: () => api.get('/push/public-key'),
+  subscribe: (subscription) => api.post('/push/subscribe', subscription),
+  unsubscribe: (endpoint) => api.post('/push/unsubscribe', { endpoint }),
+};
+
 export default {
   auth, logs, technicians, users, departments, categories,
-  slas, collaborations, notifications, feedback, reports,
+  slas, collaborations, notifications, feedback, reports, auditLogs, assets, push,
 };

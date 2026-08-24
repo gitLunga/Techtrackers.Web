@@ -27,6 +27,7 @@ import PersonAddIcon from '@mui/icons-material/PersonAddAlt';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import DownloadIcon from '@mui/icons-material/Download';
 import PlaceIcon from '@mui/icons-material/PlaceOutlined';
+import DevicesIcon from '@mui/icons-material/DevicesOther';
 import HistoryIcon from '@mui/icons-material/History';
 import ForumIcon from '@mui/icons-material/ForumOutlined';
 import StarIcon from '@mui/icons-material/StarBorder';
@@ -185,6 +186,11 @@ export default function TicketDetail() {
                 <Grid item xs={6} sm={4}>
                   <Field label="Technician" value={ticket.assignedTo} />
                 </Grid>
+                {ticket.asset && (
+                  <Grid item xs={6} sm={4}>
+                    <Field label="Asset" value={`${ticket.asset.tag} — ${ticket.asset.name}`} icon={DevicesIcon} />
+                  </Grid>
+                )}
                 <Grid item xs={6} sm={4}>
                   <Field label="Logged" value={new Date(ticket.timestamps.createdAt).toLocaleString()} />
                 </Grid>

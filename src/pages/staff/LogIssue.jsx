@@ -21,8 +21,8 @@
  *      description >= 10) client-side, so the user is corrected as they type
  *      rather than after a round trip.
  */
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect, useCallback, lazy, Suspense } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
 import {
   Card, CardContent, Grid, TextField, MenuItem, Button, Box, Typography,
@@ -32,12 +32,66 @@ import AttachFileIcon from '@mui/icons-material/AttachFile';
 import CloseIcon from '@mui/icons-material/Close';
 import SendIcon from '@mui/icons-material/Send';
 import TimerIcon from '@mui/icons-material/TimerOutlined';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
 import PageHeader from '../../components/PageHeader.jsx';
+// html5-qrcode is a heavy dependency (~380KB) — split into its own chunk so
+// it only loads for someone who actually opens the scanner.
+const QrScanner = lazy(() => import('../../components/QrScanner.jsx'));
 import useApi from '../../hooks/useApi.js';
 import { useToast } from '../../components/Toast.jsx';
-import { categories as categoriesApi, slas as slasApi, logs as logsApi } from '../../api/services/index.js';
+import { categories as categoriesApi, slas as slasApi, logs as logsApi, assets as assetsApi } from '../../api/services/index.js';
 import { PRIORITY_META } from '../../components/PriorityChip.jsx';
 import { STATUS, NEUTRAL } from '../../theme/tokens.js';
+
+/**
+ * QR payload format isn't standardised yet, so this stays permissive: try
+ * JSON with recognized keys first, fall back to dropping the raw scanned
+ * text into the location note. Extending recognized keys later means
+ * touching only this function.
+ */
+function mapQrPayload(decodedText, { setValue, categories, assets }) {
+  let parsed;
+  try {
+    parsed = JSON.parse(decodedText);
+  } catch {
+    parsed = null;
+  }
+
+  if (parsed && typeof parsed === 'object') {
+    if (typeof parsed.title === 'string') setValue('title', parsed.title);
+    if (typeof parsed.description === 'string') setValue('description', parsed.description);
+    if (typeof parsed.location === 'string') setValue('location', parsed.location);
+    if (parsed.priority && PRIORITY_META[parsed.priority]) setValue('priority', parsed.priority);
+    if (parsed.categoryId != null) {
+      const match = (categories ?? []).find((c) => c.id === Number(parsed.categoryId));
+      if (match) setValue('categoryId', match.id);
+    } else if (typeof parsed.category === 'string') {
+      const match = (categories ?? []).find((c) => c.name.toLowerCase() === parsed.category.toLowerCase());
+      if (match) setValue('categoryId', match.id);
+    }
+    // An asset's own QR code (see AssetsAdmin) — `assetTag` matches Asset.tag.
+    if (typeof parsed.assetTag === 'string') {
+      const match = (assets ?? []).find((a) => a.tag.toLowerCase() === parsed.assetTag.toLowerCase());
+      if (match) setValue('assetId', match.id);
+    } else if (parsed.assetId != null) {
+      const match = (assets ?? []).find((a) => a.id === Number(parsed.assetId));
+      if (match) setValue('assetId', match.id);
+    }
+    return true;
+  }
+
+  // Bare asset tag (the simplest thing to put on a QR sticker): match directly.
+  const assetMatch = (assets ?? []).find((a) => a.tag.toLowerCase() === decodedText.trim().toLowerCase());
+  if (assetMatch) {
+    setValue('assetId', assetMatch.id);
+    return true;
+  }
+
+  // Unrecognized payload: keep it, don't discard the scan.
+  setValue('location', decodedText.slice(0, 200));
+  return false;
+}
 
 const MAX_FILES = 5;
 const MAX_FILE_BYTES = 5 * 1024 * 1024;
@@ -55,18 +109,76 @@ function formatMinutes(minutes) {
 export default function LogIssue() {
   const navigate = useNavigate();
   const toast = useToast();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [files, setFiles] = useState([]);
   const [submitError, setSubmitError] = useState(null);
+  const [scannerOpen, setScannerOpen] = useState(searchParams.get('scan') === '1');
+  const [geoStatus, setGeoStatus] = useState('loading'); // 'loading' | 'success' | 'error'
+  const [geoError, setGeoError] = useState(null);
+  const [coords, setCoords] = useState(null);
+
+  const captureLocation = useCallback(() => {
+    setGeoStatus('loading');
+    setGeoError(null);
+    if (!navigator.geolocation) {
+      setGeoStatus('error');
+      setGeoError('Your browser does not support location capture.');
+      return;
+    }
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        setCoords({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+          accuracy: position.coords.accuracy,
+        });
+        setGeoStatus('success');
+      },
+      (error) => {
+        setGeoStatus('error');
+        setGeoError(
+          error.code === error.PERMISSION_DENIED
+            ? 'Location access was denied. Allow it in your browser settings, then retry.'
+            : 'Could not determine your location. Check your connection and retry.',
+        );
+      },
+      { enableHighAccuracy: true, timeout: 15000 },
+    );
+  }, []);
+
+  useEffect(() => {
+    captureLocation();
+  }, [captureLocation]);
 
   const { data: categories, loading: categoriesLoading } = useApi(() => categoriesApi.list(), []);
   const { data: slaTargets } = useApi(() => slasApi.list(), []);
+  const { data: assetList } = useApi(() => assetsApi.list({ limit: 100 }), []);
 
   const {
-    register, handleSubmit, control, watch,
+    register, handleSubmit, control, watch, setValue,
     formState: { errors, isSubmitting },
   } = useForm({
-    defaultValues: { title: '', description: '', categoryId: '', priority: 'MEDIUM', location: '' },
+    defaultValues: { title: '', description: '', categoryId: '', priority: 'MEDIUM', location: '', assetId: '' },
   });
+
+  const closeScanner = useCallback(() => {
+    setScannerOpen(false);
+    if (searchParams.get('scan')) {
+      searchParams.delete('scan');
+      setSearchParams(searchParams, { replace: true });
+    }
+  }, [searchParams, setSearchParams]);
+
+  const handleQrScan = useCallback(
+    (decodedText) => {
+      const recognized = mapQrPayload(decodedText, { setValue, categories, assets: assetList });
+      closeScanner();
+      toast[recognized ? 'success' : 'info'](
+        recognized ? 'Scanned details filled in — check them over before submitting.' : 'Scanned code added to the location note.',
+      );
+    },
+    [setValue, categories, assetList, toast, closeScanner],
+  );
 
   const selectedPriority = watch('priority');
   // The SLA the chosen priority will attract — shown before the user commits.
@@ -84,9 +196,16 @@ export default function LogIssue() {
   };
 
   const onSubmit = async (values) => {
+    if (geoStatus !== 'success' || !coords) return; // guarded by disabled submit too
     setSubmitError(null);
     try {
-      const { data } = await logsApi.create(values, files);
+      const payload = {
+        ...values,
+        latitude: coords.latitude,
+        longitude: coords.longitude,
+        assetId: values.assetId || undefined,
+      };
+      const { data } = await logsApi.create(payload, files);
       toast.success(`Ticket ${data.reference} logged successfully`);
       navigate(`/staff/tickets/${data.id}`);
     } catch (error) {
@@ -105,7 +224,18 @@ export default function LogIssue() {
         title="Log an issue"
         subtitle="Describe the problem and we'll route it to the right technician."
         breadcrumbs={[{ label: 'Dashboard', to: '/staff' }, { label: 'Log an issue' }]}
+        action={
+          <Button variant="outlined" startIcon={<QrCodeScannerIcon />} onClick={() => setScannerOpen(true)}>
+            Scan QR to log issue
+          </Button>
+        }
       />
+
+      {scannerOpen && (
+        <Suspense fallback={null}>
+          <QrScanner open={scannerOpen} onClose={closeScanner} onScan={handleQrScan} />
+        </Suspense>
+      )}
 
       <Grid container spacing={3}>
         <Grid item xs={12} md={8}>
@@ -187,9 +317,51 @@ export default function LogIssue() {
                     </Grid>
                   </Grid>
 
+                  {assetList?.length > 0 && (
+                    <Controller
+                      name="assetId"
+                      control={control}
+                      render={({ field }) => (
+                        <TextField {...field} select label="Related asset (optional)" helperText="If this is about a specific tracked item">
+                          <MenuItem value="">None</MenuItem>
+                          {assetList.map((asset) => (
+                            <MenuItem key={asset.id} value={asset.id}>
+                              {asset.tag} — {asset.name}
+                            </MenuItem>
+                          ))}
+                        </TextField>
+                      )}
+                    />
+                  )}
+
+                  <Box>
+                    {geoStatus === 'loading' && (
+                      <Alert severity="info" icon={<CircularProgress size={18} />}>
+                        Capturing your location — your browser may ask for permission.
+                      </Alert>
+                    )}
+                    {geoStatus === 'error' && (
+                      <Alert
+                        severity="error"
+                        action={<Button color="inherit" size="small" onClick={captureLocation}>Retry</Button>}
+                      >
+                        {geoError} Location access is required to log an issue.
+                      </Alert>
+                    )}
+                    {geoStatus === 'success' && coords && (
+                      <Chip
+                        icon={<LocationOnIcon />}
+                        label={`Captured near ${coords.latitude.toFixed(4)}, ${coords.longitude.toFixed(4)}`}
+                        color="success"
+                        variant="outlined"
+                      />
+                    )}
+                  </Box>
+
                   <TextField
-                    label="Where is it? (optional)"
+                    label="Where is it? (optional note)"
                     placeholder="e.g. HR Office, 2nd floor, desk 14"
+                    helperText="Coordinates above pinpoint the spot; add a note if it helps (e.g. which desk)"
                     {...register('location', { maxLength: { value: 200, message: 'Location is too long' } })}
                   />
 
@@ -240,7 +412,7 @@ export default function LogIssue() {
                     <Button
                       type="submit"
                       variant="contained"
-                      disabled={isSubmitting}
+                      disabled={isSubmitting || geoStatus !== 'success'}
                       startIcon={isSubmitting ? <CircularProgress size={16} color="inherit" /> : <SendIcon />}
                     >
                       {isSubmitting ? 'Submitting…' : 'Submit issue'}
