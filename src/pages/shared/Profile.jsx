@@ -10,11 +10,14 @@
  *   from localStorage — so it reflects the truth after an admin changes your
  *   role or department.
  */
-import { Card, CardContent, Grid, Typography, Box, Avatar, Chip, Stack, Divider, Button } from '@mui/material';
+import { Card, CardContent, Grid, Typography, Box, Avatar, Chip, Stack, Divider, Button, CircularProgress } from '@mui/material';
 import LockResetIcon from '@mui/icons-material/LockReset';
+import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import NotificationsOffIcon from '@mui/icons-material/NotificationsOff';
 import { useNavigate } from 'react-router-dom';
 import PageHeader from '../../components/PageHeader.jsx';
 import { useAuth } from '../../auth/AuthContext.jsx';
+import usePushNotifications from '../../hooks/usePushNotifications.js';
 import { NEUTRAL } from '../../theme/tokens.js';
 
 function Row({ label, value }) {
@@ -29,6 +32,7 @@ function Row({ label, value }) {
 export default function Profile() {
   const { user, roles, homePath } = useAuth();
   const navigate = useNavigate();
+  const { status: pushStatus, enable: enablePush, disable: disablePush } = usePushNotifications();
 
   const minutesToTime = (m) =>
     m == null ? null : `${String(Math.floor(m / 60)).padStart(2, '0')}:${String(m % 60).padStart(2, '0')}`;
@@ -55,9 +59,28 @@ export default function Profile() {
               </Stack>
 
               <Divider sx={{ my: 3 }} />
-              <Button fullWidth variant="outlined" startIcon={<LockResetIcon />} onClick={() => navigate(`${homePath}/change-password`)}>
-                Change password
-              </Button>
+              <Stack spacing={1.5}>
+                <Button fullWidth variant="outlined" startIcon={<LockResetIcon />} onClick={() => navigate(`${homePath}/change-password`)}>
+                  Change password
+                </Button>
+
+                {pushStatus !== 'unsupported' && pushStatus !== 'unavailable' && (
+                  <Button
+                    fullWidth
+                    variant={pushStatus === 'enabled' ? 'contained' : 'outlined'}
+                    color={pushStatus === 'enabled' ? 'success' : 'primary'}
+                    disabled={pushStatus === 'loading'}
+                    startIcon={
+                      pushStatus === 'loading' ? <CircularProgress size={16} color="inherit" />
+                      : pushStatus === 'enabled' ? <NotificationsActiveIcon />
+                      : <NotificationsOffIcon />
+                    }
+                    onClick={pushStatus === 'enabled' ? disablePush : enablePush}
+                  >
+                    {pushStatus === 'enabled' ? 'Push notifications on' : 'Enable push notifications'}
+                  </Button>
+                )}
+              </Stack>
             </CardContent>
           </Card>
         </Grid>
