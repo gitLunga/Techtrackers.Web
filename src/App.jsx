@@ -47,6 +47,9 @@ import TechnicianStats from './pages/technician/TechnicianStats.jsx';
 import UsersAdmin from './pages/admin/UsersAdmin.jsx';
 import { DepartmentsAdmin, CategoriesAdmin, SlaAdmin } from './pages/admin/ReferenceAdmin.jsx';
 
+// public
+import LandingPage from './pages/public/landing/LandingPage.jsx';
+
 // reports
 import ReportsOverview from './pages/reports/ReportsOverview.jsx';
 import SlaComplianceReport from './pages/reports/SlaComplianceReport.jsx';
@@ -58,6 +61,14 @@ function RootRedirect() {
   const { isAuthenticated, loading, homePath } = useAuth();
   if (loading) return null;
   return <Navigate to={isAuthenticated ? homePath : '/login'} replace />;
+}
+
+/** "/" for a guest is the marketing site; for a signed-in user it's their home. */
+function PublicLanding() {
+  const { isAuthenticated, loading, homePath } = useAuth();
+  if (loading) return null;
+  if (isAuthenticated) return <Navigate to={homePath} replace />;
+  return <LandingPage />;
 }
 
 /** Routes every signed-in role gets, mounted inside each role's area. */
@@ -132,7 +143,7 @@ export default function App() {
         {commonRoutes()}
       </Route>
 
-      <Route path="/" element={<RootRedirect />} />
+      <Route path="/" element={<PublicLanding />} />
       <Route path="*" element={<RootRedirect />} />
     </Routes>
   );

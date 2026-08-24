@@ -20,6 +20,8 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // TODO: no backend endpoint exists yet for the contact form; wire this up
+    // once one is available. Until then this only logs locally.
     console.log("Form submitted:", formData);
   };
 
