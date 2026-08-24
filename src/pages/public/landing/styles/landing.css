@@ -1,0 +1,78 @@
+#home,
+#about,
+#services,
+#login,
+#contact {
+  min-height: 100vh;
+  width: 100%;
+  scroll-snap-align: start;
+}
+
+body {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+
+.main-contain {
+  padding-top: 0;
+}
+
+.section {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Smooth scroll enhancement */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Add subtle parallax effect */
+@media (min-width: 768px) {
+  .section {
+    background-attachment: fixed;
+  }
+}
+
+/* Loading animation for sections */
+.section {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: sectionFadeIn 0.8s ease-out forwards;
+}
+
+@keyframes sectionFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Stagger animation delays */
+#home {
+  animation-delay: 0s;
+}
+#about {
+  animation-delay: 0.1s;
+}
+#services {
+  animation-delay: 0.2s;
+}
+#login {
+  animation-delay: 0.3s;
+}
+#contact {
+  animation-delay: 0.4s;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  body {
+    scroll-snap-type: none;
+  }
+
+  .section {
+    background-attachment: scroll;
+  }
+}
